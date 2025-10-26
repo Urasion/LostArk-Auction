@@ -4,6 +4,7 @@ import { PanelLeft } from 'lucide-react';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
 import { ReactNode } from 'react';
+import SettingButton from '@/features/sidebar/setting-button';
 type Props = {
   children: ReactNode;
 };
@@ -34,7 +35,8 @@ export default function PcSidebar({ children }: Props) {
           LostArk Auction
         </h1>
       </div>
-      <div className="grow">{children}</div>
+      <div className="max-h-4/5 grow">{children}</div>
+      <SettingButton />
     </aside>
   );
 }
