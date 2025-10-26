@@ -9,5 +9,5 @@ export default function useToggle() {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
-  return { toggleTheme };
+  return { theme, toggleTheme };
 }
