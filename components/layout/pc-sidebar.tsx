@@ -3,7 +3,11 @@ import useSidebar from '@/hooks/useSidebar';
 import { PanelLeft } from 'lucide-react';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
-export default function PcSidebar() {
+import { ReactNode } from 'react';
+type Props = {
+  children: ReactNode;
+};
+export default function PcSidebar({ children }: Props) {
   const { isOpen, toggleSidebar } = useSidebar();
   return (
     <aside
@@ -30,7 +34,7 @@ export default function PcSidebar() {
           LostArk Auction
         </h1>
       </div>
-      <div className="grow"></div>
+      <div className="grow">{children}</div>
     </aside>
   );
 }
