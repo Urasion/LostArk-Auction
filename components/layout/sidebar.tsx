@@ -1,12 +1,14 @@
+import { Button } from '../ui/button';
+import MoblieSidebar from './mobile-sidebar';
+import PcSidebar from './pc-sidebar';
+
 export default function Sidebar() {
   return (
     <>
       {/** 모바일에서는 drawer */}
-      <div className="p-4 md:hidden">drawer</div>
+      <MoblieSidebar />
       {/** pc에서는 sidebar */}
-      <aside className="hidden w-64 flex-col border-r bg-gray-50 p-6 md:flex dark:bg-gray-900">
-        sidebar
-      </aside>
+      <PcSidebar />
     </>
   );
 }
