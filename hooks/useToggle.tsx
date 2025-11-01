@@ -1,13 +1,19 @@
-import { useAtom } from 'jotai';
-import { atomWithStorage } from 'jotai/utils';
-import { useLayoutEffect } from 'react';
+'use client';
 
-const themeAtom = atomWithStorage('theme', 'light');
+import { atom, useAtom } from 'jotai';
+import { useLayoutEffect } from 'react';
+import Cookies from 'js-cookie';
+
+const themeAtom = atom(Cookies.get('theme'));
+
 export default function useToggle() {
   const [theme, setTheme] = useAtom(themeAtom);
-
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    setTheme((prev) => {
+      const newTheme = prev === 'light' ? 'dark' : 'light';
+      Cookies.set('theme', newTheme);
+      return newTheme;
+    });
   };
   useLayoutEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');

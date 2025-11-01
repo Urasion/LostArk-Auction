@@ -3,7 +3,7 @@ import useSidebar from '@/hooks/useSidebar';
 import { PanelLeft } from 'lucide-react';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 type Props = {
   children: ReactNode;
   Footer: ReactNode;

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Sidebar from '@/components/layout/sidebar';
+import { ThemeScript } from '@/components/provider/theme-script';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -24,11 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-dvh`}
       >
-        {/** Header 자리 */}
+        <ThemeScript />
+        {/** Header자리 */}
         <div className="flex grow">
           <Sidebar />
           <main className="flex grow bg-white dark:bg-black">{children}</main>
