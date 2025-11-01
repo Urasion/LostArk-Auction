@@ -3,17 +3,18 @@ import useSidebar from '@/hooks/useSidebar';
 import { PanelLeft } from 'lucide-react';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
-import { ReactNode } from 'react';
-import SettingButton from '@/features/sidebar/setting-button';
+import { ReactNode, useEffect, useState } from 'react';
 type Props = {
   children: ReactNode;
+  Footer: ReactNode;
 };
-export default function PcSidebar({ children }: Props) {
+export default function PcSidebar({ children, Footer }: Props) {
   const { isOpen, toggleSidebar } = useSidebar();
+
   return (
     <aside
       className={cn(
-        'hidden w-64 flex-col border-r bg-gray-50 p-4 md:flex dark:bg-gray-900 transition-all duration-300',
+        'hidden w-64 flex-col border-r bg-sidebar-accent p-4 md:flex transition-[width] duration-300',
         isOpen || 'w-19'
       )}
     >
@@ -21,7 +22,7 @@ export default function PcSidebar({ children }: Props) {
         <Button
           size="icon-lg"
           variant="ghost"
-          className="hover:bg-gray-200 p-2 z-10"
+          className="hover:bg-hover-background dark:hover:bg-hover-background p-2 z-10"
           onClick={toggleSidebar}
         >
           <PanelLeft />
@@ -35,8 +36,8 @@ export default function PcSidebar({ children }: Props) {
           LostArk Auction
         </h1>
       </div>
-      <div className="max-h-4/5 grow">{children}</div>
-      <SettingButton />
+      <div className="max-h-full grow">{children}</div>
+      {Footer}
     </aside>
   );
 }

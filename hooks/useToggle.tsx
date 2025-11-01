@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 const themeAtom = atomWithStorage('theme', 'light');
 export default function useToggle() {
@@ -9,7 +9,7 @@ export default function useToggle() {
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
