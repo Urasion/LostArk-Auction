@@ -19,7 +19,7 @@ export default function SettingButton({ isOpen }: Props) {
           variant="ghost"
           className="hidden md:flex md:w-full hover:bg-hover-background dark:hover:bg-hover-background group relative md:justify-between"
         >
-          <Settings className="group-hover:animate-spin" />
+          <Settings className="size-4! group-hover:animate-spin" />
           <p
             className={cn(
               'absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2  whitespace-nowrap transition-opacity opacity-0',
