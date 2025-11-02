@@ -2,14 +2,14 @@
 import { PanelLeft } from 'lucide-react';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import Cookies from 'js-cookie';
 import SettingButton from '@/features/sidebar/setting-button';
+import RecipeLink from '@/features/sidebar/recipe-link';
 type Props = {
-  children: ReactNode;
   defaultOpen: boolean;
 };
-export default function PcSidebar({ children, defaultOpen }: Props) {
+export default function PcSidebar({ defaultOpen }: Props) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   const handleOnChangeOpen = () => {
@@ -43,7 +43,9 @@ export default function PcSidebar({ children, defaultOpen }: Props) {
           LostArk Auction
         </h1>
       </div>
-      <div className="max-h-full grow">{children}</div>
+      <div className="max-h-full grow py-10">
+        <RecipeLink isOpen={isOpen} />
+      </div>
       <SettingButton isOpen={isOpen} />
     </aside>
   );
