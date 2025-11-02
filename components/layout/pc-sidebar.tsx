@@ -1,16 +1,23 @@
 'use client';
-import useSidebar from '@/hooks/useSidebar';
 import { PanelLeft } from 'lucide-react';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
+import Cookies from 'js-cookie';
+import SettingButton from '@/features/sidebar/setting-button';
 type Props = {
   children: ReactNode;
-  Footer: ReactNode;
+  defaultOpen: boolean;
 };
-export default function PcSidebar({ children, Footer }: Props) {
-  const { isOpen, toggleSidebar } = useSidebar();
+export default function PcSidebar({ children, defaultOpen }: Props) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
 
+  const handleOnChangeOpen = () => {
+    setIsOpen((prev) => {
+      Cookies.set('pc-sidebar', prev ? 'false' : 'true');
+      return !prev;
+    });
+  };
   return (
     <aside
       className={cn(
@@ -23,7 +30,7 @@ export default function PcSidebar({ children, Footer }: Props) {
           size="icon-lg"
           variant="ghost"
           className="hover:bg-hover-background dark:hover:bg-hover-background p-2 z-10"
-          onClick={toggleSidebar}
+          onClick={handleOnChangeOpen}
         >
           <PanelLeft />
         </Button>
@@ -37,7 +44,7 @@ export default function PcSidebar({ children, Footer }: Props) {
         </h1>
       </div>
       <div className="max-h-full grow">{children}</div>
-      {Footer}
+      <SettingButton isOpen={isOpen} />
     </aside>
   );
 }

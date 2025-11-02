@@ -15,17 +15,19 @@ type Props = {
 export default function MoblieSidebar({ children, Footer }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <Drawer direction="left" open={isOpen} onOpenChange={setIsOpen}>
-      <DrawerTrigger className='className=" size-fit p-2 md:hidden'>
-        <Menu />
-      </DrawerTrigger>
-      <DrawerContent className="max-w-72 md:hidden p-2">
-        <DrawerHeader>
-          <DrawerTitle>LostArk Auction</DrawerTitle>
-        </DrawerHeader>
-        <div className="grow">{children}</div>
-        <>{Footer}</>
-      </DrawerContent>
-    </Drawer>
+    <aside className="md:hidden">
+      <Drawer direction="right" open={isOpen} onOpenChange={setIsOpen}>
+        <DrawerTrigger className='className=" size-fit p-2 md:hidden absolute right-0'>
+          <Menu />
+        </DrawerTrigger>
+        <DrawerContent className="max-w-72 md:hidden p-2">
+          <DrawerHeader>
+            <DrawerTitle>LostArk Auction</DrawerTitle>
+          </DrawerHeader>
+          <div className="grow">{children}</div>
+          <>{Footer}</>
+        </DrawerContent>
+      </Drawer>
+    </aside>
   );
 }

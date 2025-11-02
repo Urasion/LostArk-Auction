@@ -1,9 +1,11 @@
-import SettingButton from '@/features/sidebar/setting-button';
 import MoblieSidebar from './mobile-sidebar';
 import PcSidebar from './pc-sidebar';
 import ThemeSwitch from '@/features/sidebar/theme-switch';
+import { cookies } from 'next/headers';
 
-export default function Sidebar() {
+export default async function Sidebar() {
+  const cookieStore = await cookies();
+  const pcDefaultOpen = cookieStore.get('pc-sidebar')?.value === 'true';
   return (
     <>
       {/** 모바일에서는 drawer */}
@@ -17,13 +19,7 @@ export default function Sidebar() {
         <></>
       </MoblieSidebar>
       {/** pc에서는 sidebar */}
-      <PcSidebar
-        Footer={
-          <>
-            <SettingButton />
-          </>
-        }
-      >
+      <PcSidebar defaultOpen={pcDefaultOpen}>
         <></>
       </PcSidebar>
     </>

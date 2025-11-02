@@ -5,13 +5,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import useSidebar from '@/hooks/useSidebar';
 import { cn } from '@/lib/utils';
 import { Settings } from 'lucide-react';
 import ThemeSwitch from './theme-switch';
-
-export default function SettingButton() {
-  const { isOpen } = useSidebar();
+type Props = {
+  isOpen: boolean;
+};
+export default function SettingButton({ isOpen }: Props) {
   return (
     <Popover>
       <PopoverTrigger asChild>
