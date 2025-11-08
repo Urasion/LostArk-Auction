@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { ReactNode, useState } from 'react';
 import Cookies from 'js-cookie';
 import SettingButton from '@/features/sidebar/setting-button';
+import Link from 'next/link';
 type Props = {
   children: ReactNode;
   defaultOpen: boolean;
@@ -34,14 +35,15 @@ export default function PcSidebar({ defaultOpen, children }: Props) {
         >
           <PanelLeft />
         </Button>
-        <h1
+        <Link
+          href={'/'}
           className={cn(
             'absolute top-1/2 -translate-y-1/2 left-4 whitespace-nowrap transition-opacity opacity-0',
             'group-data-[state-sidebar-open=true]:opacity-100 group-data-[state-sidebar-open=true]:duration-300 group-data-[state-sidebar-open=true]:delay-100'
           )}
         >
           LostArk Auction
-        </h1>
+        </Link>
       </div>
       <div className="flex flex-col grow justify-between pt-10 pb-4 px-2">
         <div className="max-h-full grow">{children}</div>
