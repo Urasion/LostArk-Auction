@@ -1,3 +1,4 @@
+import RecipeLink from '@/features/sidebar/recipe-link';
 import MoblieSidebar from './mobile-sidebar';
 import PcSidebar from './pc-sidebar';
 import { cookies } from 'next/headers';
@@ -8,10 +9,14 @@ export default async function Sidebar() {
   return (
     <>
       {/** 모바일에서는 drawer */}
-      <MoblieSidebar />
+      <MoblieSidebar>
+        <RecipeLink />
+      </MoblieSidebar>
 
       {/** pc에서는 sidebar */}
-      <PcSidebar defaultOpen={pcDefaultOpen} />
+      <PcSidebar defaultOpen={pcDefaultOpen}>
+        <RecipeLink />
+      </PcSidebar>
     </>
   );
 }

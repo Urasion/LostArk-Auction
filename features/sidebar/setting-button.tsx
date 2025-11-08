@@ -8,22 +8,20 @@ import {
 import { cn } from '@/lib/utils';
 import { Settings } from 'lucide-react';
 import ThemeSwitch from './theme-switch';
-type Props = {
-  isOpen: boolean;
-};
-export default function SettingButton({ isOpen }: Props) {
+
+export default function SettingButton() {
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
-          className="hidden md:flex md:w-full hover:bg-hover-background dark:hover:bg-hover-background group relative md:justify-between"
+          className="hidden md:flex md:w-full hover:bg-hover-background has-[>svg]:px-3 dark:hover:bg-hover-background  relative md:justify-between"
         >
-          <Settings className="size-4! group-hover:animate-spin" />
+          <Settings className="size-4! " />
           <p
             className={cn(
               'absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2  whitespace-nowrap transition-opacity opacity-0',
-              isOpen && 'opacity-100 duration-300 delay-100'
+              'group-data-[state-sidebar-open=true]:opacity-100 group-data-[state-sidebar-open=true]:duration-300 group-data-[state-sidebar-open=true]:delay-100'
             )}
           >
             환경설정

@@ -9,9 +9,10 @@ import {
 } from '../ui/drawer';
 import { Menu } from 'lucide-react';
 import ThemeSwitch from '@/features/sidebar/theme-switch';
-import RecipeLink from '@/features/sidebar/recipe-link';
-
-export default function MoblieSidebar() {
+type Props = {
+  children: ReactNode;
+};
+export default function MoblieSidebar({ children }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <aside className="md:hidden">
@@ -23,8 +24,8 @@ export default function MoblieSidebar() {
           <DrawerHeader>
             <DrawerTitle>LostArk Auction</DrawerTitle>
           </DrawerHeader>
-          <div className="grow">
-            <RecipeLink isOpen={isOpen} />
+          <div className="grow group" data-state-sidebar-open={isOpen}>
+            {children}
           </div>
           <div className="flex flex-col">
             <ThemeSwitch />
