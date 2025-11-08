@@ -10,7 +10,7 @@ export default async function Sidebar() {
     <>
       {/** 모바일에서는 drawer */}
       <MoblieSidebar>
-        <RecipeLink />
+        <RecipeLink isMobile={true} />
       </MoblieSidebar>
 
       {/** pc에서는 sidebar */}

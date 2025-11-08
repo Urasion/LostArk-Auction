@@ -20,11 +20,11 @@ export default function MoblieSidebar({ children }: Props) {
         <DrawerTrigger className="size-fit p-2 md:hidden absolute right-0">
           <Menu />
         </DrawerTrigger>
-        <DrawerContent className="max-w-72 md:hidden p-2">
+        <DrawerContent className="max-w-60 md:hidden p-2 bg-sidebar-accent">
           <DrawerHeader>
             <DrawerTitle>LostArk Auction</DrawerTitle>
           </DrawerHeader>
-          <div className="grow">{children}</div>
+          <div className="grow py-4">{children}</div>
           <div className="flex flex-col">
             <ThemeSwitch />
           </div>
