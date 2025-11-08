@@ -17,16 +17,14 @@ export default function MoblieSidebar({ children }: Props) {
   return (
     <aside className="md:hidden">
       <Drawer direction="right" open={isOpen} onOpenChange={setIsOpen}>
-        <DrawerTrigger className='className=" size-fit p-2 md:hidden absolute right-0'>
+        <DrawerTrigger className="size-fit p-2 md:hidden absolute right-0">
           <Menu />
         </DrawerTrigger>
         <DrawerContent className="max-w-72 md:hidden p-2">
           <DrawerHeader>
             <DrawerTitle>LostArk Auction</DrawerTitle>
           </DrawerHeader>
-          <div className="grow group" data-state-sidebar-open={isOpen}>
-            {children}
-          </div>
+          <div className="grow">{children}</div>
           <div className="flex flex-col">
             <ThemeSwitch />
           </div>
