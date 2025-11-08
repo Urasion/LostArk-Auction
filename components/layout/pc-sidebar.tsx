@@ -26,7 +26,7 @@ export default function PcSidebar({ defaultOpen, children }: Props) {
       )}
       data-state-sidebar-open={isOpen}
     >
-      <div className="w-full flex justify-end items-center grow relative max-h-16 px-2 shadow-md ">
+      <div className="w-full flex justify-end items-center grow relative max-h-16 px-2 shadow-md dark:shadow-black/50 ">
         <Button
           size="icon-lg"
           variant="ghost"
