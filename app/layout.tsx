@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Sidebar from '@/components/layout/sidebar';
-import { ThemeScript } from '@/components/provider/theme-script';
+import { ThemeScript } from '@/features/provider/theme-script';
+import QueryClientProviders from '@/features/provider/queryclient-provider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -30,11 +31,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-dvh`}
       >
         <ThemeScript />
+        <QueryClientProviders>
+          <div className="flex grow">
+            <Sidebar />
+            <main className="flex grow bg-white dark:bg-black">{children}</main>
+          </div>
+        </QueryClientProviders>
         {/** Header자리 */}
-        <div className="flex grow">
-          <Sidebar />
-          <main className="flex grow bg-white dark:bg-black">{children}</main>
-        </div>
       </body>
     </html>
   );
