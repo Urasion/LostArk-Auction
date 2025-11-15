@@ -11,14 +11,13 @@ export default function RecipeLink({ isMobile }: Props) {
       {isMobile ? (
         <Link
           href={'/recipe'}
-          className="w-full flex items-center justify-start gap-x-4 rounded-md text-sm font-medium px-4 py-2 transition-colors duration-300 hover:bg-hover-background dark:hover:bg-hover-background "
+          className="w-full flex items-center justify-start gap-x-4 text-sm font-medium px-6 py-4 transition-colors duration-300 hover:bg-hover-background dark:hover:bg-hover-background border-y"
         >
-          <BookOpenText className="size-4 shrink-0" />
-          각인서
+          <p className="m-auto text-xl"> 각인서</p>
         </Link>
       ) : (
         <Link
-          className="hidden h-9 rounded-md text-sm font-medium px-4 py-2  has-[>svg]:px-3 md:flex md:w-full hover:bg-hover-background dark:hover:bg-hover-background group relative md:justify-between md:items-center duration-300"
+          className="hidden h-9 rounded-md text-sm font-medium px-4 py-2  has-[>svg]:px-3 xl:flex xl:w-full hover:bg-hover-background dark:hover:bg-hover-background group relative xl:justify-between xl:items-center duration-300"
           href={'/recipe'}
         >
           <BookOpenText className="size-4 shrink-0" />

@@ -1,11 +1,11 @@
 'use client';
 import { PanelLeft } from 'lucide-react';
-import { Button } from '../ui/button';
+import { Button } from '../../../components/ui/button';
 import { cn } from '@/lib/utils';
 import { ReactNode, useState } from 'react';
 import Cookies from 'js-cookie';
-import SettingButton from '@/features/sidebar/setting-button';
 import Link from 'next/link';
+import SettingButton from '../components/setting-button';
 type Props = {
   children: ReactNode;
   defaultOpen: boolean;
@@ -22,11 +22,11 @@ export default function PcSidebar({ defaultOpen, children }: Props) {
   return (
     <aside
       className={cn(
-        'hidden w-64 flex-col border-r bg-sidebar-accent pb-4  md:flex transition-[width] duration-300 data-[state-sidebar-open=false]:w-14 group'
+        'hidden w-64 flex-col border-r bg-sidebar-accent pb-4  xl:flex transition-[width] duration-300 data-[state-sidebar-open=false]:w-14 group'
       )}
       data-state-sidebar-open={isOpen}
     >
-      <div className="w-full flex justify-end items-center grow relative max-h-16 px-2 shadow-md dark:shadow-black/50 ">
+      <div className="w-full flex justify-end items-center grow relative max-h-16 px-2 border border-b">
         <Button
           size="icon-lg"
           variant="ghost"

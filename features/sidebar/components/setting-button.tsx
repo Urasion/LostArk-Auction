@@ -15,7 +15,7 @@ export default function SettingButton() {
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
-          className="hidden md:flex md:w-full hover:bg-hover-background has-[>svg]:px-3 dark:hover:bg-hover-background  relative md:justify-between transition-colors duration-300"
+          className="hidden xl:flex xl:w-full hover:bg-hover-background has-[>svg]:px-3 dark:hover:bg-hover-background  relative xl:justify-between transition-colors duration-300"
         >
           <Settings className="size-4! " />
           <p
@@ -29,7 +29,7 @@ export default function SettingButton() {
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="p-2 hidden md:flex"
+        className="p-2 hidden xl:flex"
         side="right"
         sideOffset={30}
       >
