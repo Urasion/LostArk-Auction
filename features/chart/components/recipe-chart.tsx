@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { CartesianGrid, Line, LineChart, XAxis } from 'recharts';
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
 import {
   Card,
@@ -141,7 +141,7 @@ export function RecipeChart() {
 
   return (
     <Card className="h-full py-4 sm:py-0 rounded-none">
-      <CardHeader className="flex flex-col items-stretch border-b !p-0 sm:flex-row">
+      <CardHeader className="flex flex-col items-stretch border-b p-0! sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-3">
           <CardTitle>각인서</CardTitle>
           <CardDescription>갱신주기는 1분입니다.</CardDescription>
@@ -167,7 +167,7 @@ export function RecipeChart() {
           })} */}
         </div>
       </CardHeader>
-      <CardContent className="px-2 sm:p-6">
+      <CardContent className="pl-0! sm:p-6">
         <ChartContainer
           config={chartConfig}
           className="aspect-auto h-[400px] w-full"
@@ -176,7 +176,7 @@ export function RecipeChart() {
             accessibilityLayer
             data={chartData}
             margin={{
-              left: 12,
+              left: 0,
               right: 12,
             }}
           >
@@ -194,6 +194,12 @@ export function RecipeChart() {
                   day: 'numeric',
                 });
               }}
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              minTickGap={32}
             />
             <ChartTooltip
               content={
