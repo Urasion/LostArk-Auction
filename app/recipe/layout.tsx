@@ -1,6 +1,5 @@
-import { DataTableDemo } from '@/features/main/auction-table';
+import getRecipeList from '@/api/recipe';
 import { ReactNode } from 'react';
-import getRecipeList from './api/fetch';
 
 type Props = {
   children: ReactNode;
@@ -15,9 +14,7 @@ export default async function RecipeLayout({ children }: Props) {
   return (
     <div className="flex grow">
       {children}
-      <div className="flex px-2 shrink-0">
-        <DataTableDemo />
-      </div>
+      <div className="flex px-2 shrink-0"></div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { apiClient } from '@/lib/apiClient';
-import { MarketOptions } from './type';
+import { MarketOptions } from '@/store/sidebar';
 
 export async function getMarketOptions(): Promise<MarketOptions> {
   return await apiClient('/markets/options', {

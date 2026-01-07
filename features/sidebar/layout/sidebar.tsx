@@ -1,5 +1,5 @@
+import { getMarketOptions } from '@/api/sidebar';
 import RecipeLink from '../components/recipe-link';
-import { getMarketOptions } from '../api/fetchers';
 import MoblieSidebar from './mobile-sidebar';
 import PcSidebar from './pc-sidebar';
 import { cookies } from 'next/headers';

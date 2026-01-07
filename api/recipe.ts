@@ -1,5 +1,5 @@
 import { apiClient } from '@/lib/apiClient';
-import { RecipeRequest } from './interface';
+import { RecipeRequest } from '@/store/recipe';
 
 export default function getRecipeList(request: RecipeRequest) {
   return apiClient('/markets/items', {
