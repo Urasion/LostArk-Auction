@@ -1,23 +1,13 @@
-import { createColumnHelper } from '@tanstack/react-table';
-import { DataTable } from '@/components/ui/data-table';
-import { RecipeItem } from '@/store/recipe';
+import { DataTable } from '@/components/common/DataTable';
+import { recipe_columns } from './RecipeColumns';
+import { getRecipeList } from '@/api/recipe';
 
-export default function RecipeTable() {
-  const columnHelper = createColumnHelper<RecipeItem>();
-  const column = [
-    columnHelper.accessor('Name', {
-      header: '아이템명',
-    }),
-    columnHelper.accessor('Grade', {
-      header: '등급',
-    }),
-    columnHelper.accessor('YDayAvgPrice', {
-      header: '전일 평균 거래가',
-    }),
-    columnHelper.accessor('YDayAvgPrice', {
-      header: '전일 평균 거래가',
-    }),
-  ];
+export default async function RecipeTable() {
+  const recipe = await getRecipeList({
+    ItemGrade: '유물',
+    ItemName: '',
+    PageNo: 4,
+  });
 
-  return <></>;
+  return <DataTable data={recipe.Items} columns={recipe_columns} />;
 }

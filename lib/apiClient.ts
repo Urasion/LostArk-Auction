@@ -5,7 +5,10 @@ interface ApiOptions extends RequestInit {
   next?: { revalidate?: number; tags?: string[] };
 }
 
-export const apiClient = async (path: string, options: ApiOptions = {}) => {
+export async function apiClient<TData>(
+  path: string,
+  options: ApiOptions = {}
+): Promise<TData> {
   const defaultHeaders: HeadersInit = {
     Authorization: `Bearer ${API_KEY}`,
     'Content-Type': 'application/json',
@@ -29,4 +32,4 @@ export const apiClient = async (path: string, options: ApiOptions = {}) => {
     throw new Error(`API request failed with status ${response.status}`);
   }
   return response.json();
-};
+}

@@ -17,10 +17,10 @@ export default function SettingButton() {
           variant="ghost"
           className="hidden xl:flex xl:w-full hover:bg-hover-background has-[>svg]:px-3 dark:hover:bg-hover-background  relative xl:justify-between transition-colors duration-300"
         >
-          <Settings className="size-4! " />
+          <Settings className="size-5! " />
           <p
             className={cn(
-              'absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2  whitespace-nowrap transition-opacity opacity-0',
+              'absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2  whitespace-nowrap transition-opacity opacity-0 text-base',
               'group-data-[state-sidebar-open=true]:opacity-100 group-data-[state-sidebar-open=true]:duration-300 group-data-[state-sidebar-open=true]:delay-100'
             )}
           >

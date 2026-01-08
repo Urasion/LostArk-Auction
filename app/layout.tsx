@@ -4,6 +4,7 @@ import './globals.css';
 import Sidebar from '@/features/sidebar/layout/sidebar';
 import { ThemeScript } from '@/features/provider/theme-script';
 import QueryClientProviders from '@/features/provider/queryclient-provider';
+import { Provider } from 'jotai';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -31,12 +32,17 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-dvh`}
       >
         <ThemeScript />
-        <QueryClientProviders>
-          <div className="flex grow">
-            <Sidebar />
-            <main className="flex grow bg-white dark:bg-black">{children}</main>
-          </div>
-        </QueryClientProviders>
+        <Provider>
+          <QueryClientProviders>
+            <div className="flex grow">
+              <Sidebar />
+              <main className="flex grow bg-white dark:bg-black p-4">
+                {children}
+              </main>
+            </div>
+          </QueryClientProviders>
+        </Provider>
+
         {/** Header자리 */}
       </body>
     </html>

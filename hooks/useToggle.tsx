@@ -1,13 +1,21 @@
 'use client';
 
 import { atom, useAtom } from 'jotai';
-import { useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import Cookies from 'js-cookie';
 
-const themeAtom = atom(Cookies.get('theme') ?? 'light');
+const themeAtom = atom<'light' | 'dark'>('light');
 
 export default function useToggle() {
   const [theme, setTheme] = useAtom(themeAtom);
+
+  useEffect(() => {
+    const cookieTheme = Cookies.get('theme');
+    if (cookieTheme === 'dark' || cookieTheme === 'light') {
+      setTheme(cookieTheme);
+    }
+  }, [theme, setTheme]);
+
   const toggleTheme = () => {
     setTheme((prev) => {
       const newTheme = prev === 'light' ? 'dark' : 'light';
