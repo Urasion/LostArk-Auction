@@ -1,5 +1,6 @@
 import { apiClient } from '@/lib/apiClient';
 import {
+  AuctionItemDetail,
   AuctionItemDetailResponse,
   AuctionItemRequest,
   AuctionItemResponse,
@@ -20,8 +21,8 @@ export function getRecipeList(request: AuctionItemRequest) {
   });
 }
 
-export function getRecipeDetail(id: number) {
-  return apiClient<AuctionItemDetailResponse>(`/markets/items/${id}`, {
+export async function getRecipeDetail(id: string) {
+  return apiClient<AuctionItemDetailResponse[]>(`/markets/items/${id}`, {
     method: 'GET',
   });
 }
