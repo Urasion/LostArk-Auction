@@ -8,8 +8,6 @@ import {
   getPaginationRowModel,
   SortingState,
   getSortedRowModel,
-  RowSelectionState,
-  OnChangeFn,
 } from '@tanstack/react-table';
 import { useState } from 'react';
 import { motion } from 'motion/react';
@@ -23,20 +21,20 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { usePathname, useRouter } from 'next/navigation';
 
 interface DataTableProps<TData> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: ColumnDef<TData, any>[];
   data: TData[];
-  rowSelection?: RowSelectionState;
-  onRowSelection?: OnChangeFn<RowSelectionState>;
+  onRowClick?: (item: TData) => void;
 }
 
-export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
+export function DataTable<TData>({
+  columns,
+  data,
+  onRowClick,
+}: DataTableProps<TData>) {
   const [sorting, setSorting] = useState<SortingState>([]);
-  const router = useRouter();
-  const pathname = usePathname();
   const table = useReactTable({
     data,
     columns,
@@ -88,7 +86,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
                   onClick={() => {
-                    router.push(`${pathname}?id=${row.getValue('Id')}`);
+                    onRowClick?.(row.original);
                   }}
                 >
                   {row.getVisibleCells().map((cell) => (

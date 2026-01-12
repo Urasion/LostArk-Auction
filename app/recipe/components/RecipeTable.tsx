@@ -1,13 +1,18 @@
-import { DataTable } from '@/components/common/DataTable';
-import { recipe_columns } from './RecipeColumns';
-import { getRecipeList } from '@/api/recipe';
+'use client';
+import { auction_columns } from '@/features/data-chart/constant/auction-column';
+import { DataTable } from '@/features/data-table/data-table';
+import { AuctionItem } from '@/store/auction';
+import { useRouter } from 'next/navigation';
 
-export default async function RecipeTable() {
-  const recipe = await getRecipeList({
-    ItemGrade: '유물',
-    ItemName: '',
-    PageNo: 4,
-  });
-
-  return <DataTable data={recipe.Items} columns={recipe_columns} />;
+interface Props {
+  data: AuctionItem[];
+}
+export default function RecipeTable({ data }: Props) {
+  const router = useRouter();
+  const onRowClick = (item: AuctionItem) => {
+    router.push(`/recipe/${item.Id}`);
+  };
+  return (
+    <DataTable data={data} columns={auction_columns} onRowClick={onRowClick} />
+  );
 }
