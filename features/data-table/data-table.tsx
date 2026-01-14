@@ -5,7 +5,6 @@ import {
   flexRender,
   getCoreRowModel,
   useReactTable,
-  getPaginationRowModel,
   SortingState,
   getSortedRowModel,
 } from '@tanstack/react-table';
@@ -20,7 +19,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
 
 interface DataTableProps<TData> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -39,7 +37,6 @@ export function DataTable<TData>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(), // 페이지네이션 로직
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(), // 정렬 로직
     state: {
@@ -55,13 +52,13 @@ export function DataTable<TData>({
   return (
     <div>
       <motion.div
-        className="space-y-4 rounded-xl border"
+        className="rounded-xl border relative overflow-y-auto w-full max-h-full min-w-180"
         initial={{ opacity: 0.2, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         <Table>
-          <TableHeader>
+          <TableHeader className="sticky top-0 z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -111,30 +108,6 @@ export function DataTable<TData>({
             )}
           </TableBody>
         </Table>
-      </motion.div>
-
-      <motion.div
-        className="flex items-center justify-end space-x-2 py-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-      >
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          이전
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          다음
-        </Button>
       </motion.div>
     </div>
   );
