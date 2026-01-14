@@ -1,6 +1,6 @@
 'use client';
 import { Skeleton } from '@/components/ui/skeleton';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function Page() {

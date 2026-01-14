@@ -16,7 +16,7 @@ export default async function Page({ params }: RecipeDetailPageProps) {
   const { id } = await params;
 
   return (
-    <div className="flex flex-col h-full grow gap-y-4 ">
+    <div className="flex flex-col h-full grow gap-y-4 overflow-y-auto scrollbar-hide">
       <Suspense fallback={<Skeleton className="h-180 w-full" />}>
         <RecipeDetailChart id={id} />
       </Suspense>
