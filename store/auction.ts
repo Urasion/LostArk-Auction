@@ -1,7 +1,6 @@
 export interface AuctionItemRequest {
   ItemGrade: string;
   ItemName: string;
-  PageNo: number;
 }
 
 export interface AuctionItem {

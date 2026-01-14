@@ -1,3 +1,6 @@
+import { Skeleton } from '@/components/ui/skeleton';
+import { redirect } from 'next/navigation';
+
 export default function Page() {
-  return <div>111</div>;
+  redirect('/recipe/65200505');
 }

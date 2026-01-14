@@ -6,10 +6,12 @@ import { ReactNode, useState } from 'react';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import SettingButton from '../components/setting-button';
+
 type Props = {
   children: ReactNode;
   defaultOpen: boolean;
 };
+
 export default function PcSidebar({ defaultOpen, children }: Props) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
@@ -19,14 +21,16 @@ export default function PcSidebar({ defaultOpen, children }: Props) {
       return !prev;
     });
   };
+
   return (
     <aside
       className={cn(
-        'hidden w-64 flex-col border-r bg-sidebar-accent pb-4  xl:flex transition-[width] duration-300 data-[state-sidebar-open=false]:w-14 group'
+        'hidden h-screen sticky top-0 shrink-0 flex-col border-r bg-sidebar-accent pb-4 xl:flex transition-[width] duration-300 data-[state-sidebar-open=false]:w-14 group',
+        'w-64'
       )}
       data-state-sidebar-open={isOpen}
     >
-      <div className="w-full flex justify-end items-center grow relative max-h-16 px-2 border border-b">
+      <div className="w-full flex justify-end items-center shrink-0 relative h-16 px-2 border-b">
         <Button
           size="icon-lg"
           variant="ghost"
@@ -45,9 +49,13 @@ export default function PcSidebar({ defaultOpen, children }: Props) {
           LostArk Auction
         </Link>
       </div>
-      <div className="flex flex-col grow justify-between pt-10 pb-4 px-2">
-        <div className="max-h-full grow">{children}</div>
-        <SettingButton />
+
+      <div className="flex flex-col grow justify-between pt-10 pb-4 px-2 overflow-hidden">
+        <div className="grow overflow-y-auto scrollbar-hide">{children}</div>
+
+        <div className="shrink-0 pt-4">
+          <SettingButton />
+        </div>
       </div>
     </aside>
   );

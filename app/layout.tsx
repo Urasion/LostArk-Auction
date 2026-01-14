@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-dvh`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-dvh`}
         suppressHydrationWarning={true}
       >
         <ThemeScript />
@@ -37,7 +37,7 @@ export default function RootLayout({
           <QueryClientProviders>
             <div className="flex grow">
               <Sidebar />
-              <main className="flex grow bg-white dark:bg-black p-4">
+              <main className="flex grow items-center bg-white dark:bg-black p-4">
                 {children}
               </main>
             </div>

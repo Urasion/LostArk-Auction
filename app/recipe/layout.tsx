@@ -1,22 +1,22 @@
-import { ReactNode } from 'react';
-import RecipeTable from './components/RecipeTable';
-import { getRecipeList } from '@/api/recipe';
+import { ReactNode, Suspense } from 'react';
+import RecipeSidebar from './components/RecipeSIdebar';
+import { DataTableSkeleton } from '@/features/data-table/data-table-skeleton';
+import { AUCTION_SKELETON_COLUMNS } from '@/features/data-table/constant/auction-skeleton-column';
 
 type Props = {
   children: ReactNode;
 };
 export default async function RecipeLayout({ children }: Props) {
-  const recipe = await getRecipeList({
-    ItemGrade: '유물',
-    ItemName: '',
-    PageNo: 4,
-  });
   return (
-    <div className="flex grow gap-x-4">
+    <div className="flex h-[95dvh] items-center grow gap-x-4">
       {children}
-      <div className="flex shrink-0">
-        <RecipeTable data={recipe.Items} />
-      </div>
+      <Suspense
+        fallback={
+          <DataTableSkeleton columns={AUCTION_SKELETON_COLUMNS} rowCount={20} />
+        }
+      >
+        <RecipeSidebar />
+      </Suspense>
     </div>
   );
 }
