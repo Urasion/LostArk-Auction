@@ -1,7 +1,15 @@
 'use client';
 
 import * as React from 'react';
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
+import {
+  Bar,
+  CartesianGrid,
+  ComposedChart,
+  LabelList,
+  Line,
+  XAxis,
+  YAxis,
+} from 'recharts';
 
 import {
   Card,
@@ -44,8 +52,8 @@ export function Chart<TData extends { Date: string }>({
         <CardDescription>{chartDescription}</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="w-full max-h-200">
-          <AreaChart
+        <ChartContainer config={chartConfig} className="w-full max-h-160">
+          <ComposedChart
             accessibilityLayer
             data={chartData}
             margin={{
@@ -66,58 +74,49 @@ export function Chart<TData extends { Date: string }>({
                   day: 'numeric',
                 });
               }}
-              reversed
             />
             <YAxis
+              yAxisId={'AvgPrice'}
               tickLine={false}
               axisLine={false}
               tickMargin={8}
               width={48}
             />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <defs>
-              <linearGradient id="AvgPrice" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="var(--color-AvgPrice)"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="var(--color-AvgPrice)"
-                  stopOpacity={0.1}
-                />
-              </linearGradient>
-              <linearGradient id="TradeCount" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="var(--color-TradeCount)"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="var(--color-TradeCount)"
-                  stopOpacity={0.1}
-                />
-              </linearGradient>
-            </defs>
-            <Area
-              dataKey={chartKeys[0]}
-              type="linear"
-              fill="url(#AvgPrice)"
-              fillOpacity={0.4}
-              stroke="var(--color-AvgPrice)"
+            <YAxis
+              yAxisId={'TradeCount'}
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              padding={{ top: 100 }}
+              width={48}
+              hide={true}
             />
-            <Area
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <ChartLegend content={<ChartLegendContent />} />
+
+            <Bar
+              radius={8}
               dataKey={chartKeys[1]}
               type="linear"
-              fill="url(#TradeCount)"
-              fillOpacity={0.4}
+              yAxisId="TradeCount"
+              fill="var(--color-TradeCount)"
               stroke="var(--color-TradeCount)"
+            >
+              <LabelList
+                position="top"
+                offset={12}
+                className="fill-foreground"
+                fontSize={12}
+              />
+            </Bar>
+            <Line
+              dataKey={chartKeys[0]}
+              type="linear"
+              fill="var(--color-AvgPrice)"
+              yAxisId="AvgPrice"
+              stroke="var(--color-AvgPrice)"
             />
-
-            <ChartLegend content={<ChartLegendContent />} />
-          </AreaChart>
+          </ComposedChart>
         </ChartContainer>
       </CardContent>
     </Card>
