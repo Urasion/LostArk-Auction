@@ -52,19 +52,18 @@ export function DataTable<TData>({
   return (
     <div>
       <motion.div
-        className="rounded-xl bg-card border relative overflow-y-auto w-full max-h-full min-w-180 
-        "
+        className="rounded-xl bg-card border relative min-w-180 overflow-y-auto w-full max-h-full scrollbar-hide"
         initial={{ opacity: 0.2, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Table>
-          <TableHeader className="sticky top-0 z-10">
+        <Table className="w-full caption-bottom text-sm">
+          <TableHeader className="w-full caption-bottom text-sm">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className="sticky top-0 z-10">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -77,12 +76,13 @@ export function DataTable<TData>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="overlfow-y-auto scrollbar-hide">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
+                  className="h-14"
                   onClick={() => {
                     onRowClick?.(row.original);
                   }}

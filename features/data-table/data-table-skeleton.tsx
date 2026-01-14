@@ -37,7 +37,7 @@ export function DataTableSkeleton<TData>({
               <TableRow key={rowIndex}>
                 {columns.map((_, colIndex) => (
                   <TableCell key={colIndex}>
-                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-12 w-full" />
                   </TableCell>
                 ))}
               </TableRow>
