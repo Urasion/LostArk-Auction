@@ -18,7 +18,7 @@ const badgeVariants = cva(
         outline:
           'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
         none: 'rounded-sm bg-gray-100 text-gray-500 border-gray-500',
-        decrease: 'rounded-sm bg-blue-100 text-blue-500 border-blue-500',
+        decrease: 'rounded-sm bg-green-100 text-green-500 border-green-500',
         increase: 'rounded-sm bg-red-100 text-red-500 border-red-500',
       },
     },
