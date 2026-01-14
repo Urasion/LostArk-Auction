@@ -17,7 +17,7 @@ export default function RecipeLink({ isMobile }: Props) {
         </Link>
       ) : (
         <Link
-          className="hidden h-9 rounded-md text-sm font-medium px-4 py-2  has-[>svg]:px-3 xl:flex xl:w-full hover:bg-hover-background dark:hover:bg-hover-background group relative xl:justify-between xl:items-center duration-300"
+          className="hidden h-9 rounded-md text-sm font-medium px-4 py-2  group-data-[state-sidebar-open=false]:justify-center xl:flex xl:w-full hover:bg-hover-background dark:hover:bg-hover-background group relative xl:justify-between xl:items-center duration-300"
           href={'/recipe'}
         >
           <BookOpenText className="size-5 shrink-0" />

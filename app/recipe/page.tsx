@@ -1,6 +1,16 @@
+'use client';
 import { Skeleton } from '@/components/ui/skeleton';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Page() {
-  redirect('/recipe/65200505');
+  const router = useRouter();
+  useEffect(() => {
+    router.replace('/recipe/65200505');
+  }, [router]);
+  return (
+    <div className="flex grow">
+      <Skeleton className="w-full h-125 rounded-md" />
+    </div>
+  );
 }

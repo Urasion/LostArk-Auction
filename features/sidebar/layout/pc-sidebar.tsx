@@ -51,8 +51,7 @@ export default function PcSidebar({ defaultOpen, children }: Props) {
       </div>
 
       <div className="flex flex-col grow justify-between pt-10 pb-4 px-2 overflow-hidden">
-        <div className="grow overflow-y-auto scrollbar-hide">{children}</div>
-
+        <div className="grow  scrollbar-hide">{children}</div>
         <div className="shrink-0 pt-4">
           <SettingButton />
         </div>

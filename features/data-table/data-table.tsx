@@ -52,7 +52,7 @@ export function DataTable<TData>({
   return (
     <div>
       <motion.div
-        className="rounded-xl border relative overflow-y-auto w-full max-h-full min-w-180"
+        className="rounded-xl bg-card border relative overflow-y-auto w-full max-h-full min-w-180 pb-10"
         initial={{ opacity: 0.2, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
