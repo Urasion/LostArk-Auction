@@ -24,7 +24,7 @@ export interface AuctionItemResponse {
 export interface AuctionItemDetailResponse {
   Name: string;
   TradeRemainCount: number;
-  BundleCOunt: number;
+  BundleCount: number;
   Stats: AuctionItemDetail[];
 }
 
