@@ -13,7 +13,10 @@ export async function apiClient<TData>(
     Authorization: `Bearer ${API_KEY}`,
     'Content-Type': 'application/json',
   };
-  const defaultCache: RequestCache = 'no-store';
+  console.log(API_KEY);
+
+  const isISR = options.next?.revalidate !== undefined;
+  const defaultCache: RequestCache = isISR ? 'force-cache' : 'no-store';
   const mergedOptions: ApiOptions = {
     // 기본값
     cache: defaultCache,

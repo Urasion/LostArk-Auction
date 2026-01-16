@@ -23,6 +23,7 @@ export async function getUpgradeMaterials(request: AuctionItemRequest) {
         CategoryCode: 50000,
         SortCondition: 'DESC',
       }),
+      next: { revalidate: 600 },
     });
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
@@ -38,12 +39,12 @@ export async function getUpgradeMaterialsDetail(id: string) {
     `/markets/items/${id}`,
     {
       method: 'GET',
+      next: { revalidate: 600 },
     }
   );
   const sorted_data = data.map((Item) => {
     Item.Stats.reverse();
     return Item;
   });
-  console.log('sorted_data', sorted_data);
   return sorted_data;
 }

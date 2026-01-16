@@ -23,6 +23,7 @@ export async function getRecipeList(request: AuctionItemRequest) {
         CategoryCode: 40000,
         SortCondition: 'DESC',
       }),
+      next: { revalidate: 600 },
     });
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
@@ -39,6 +40,7 @@ export async function getRecipeDetail(id: string) {
     `/markets/items/${id}`,
     {
       method: 'GET',
+      next: { revalidate: 600 },
     }
   );
   const sorted_data = data.map((Item) => {
