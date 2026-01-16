@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const badgeVariants = cva(
-  'inline-flex items-center justify-center rounded-full border px-2 py-1 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden',
+  'inline-flex items-center justify-center rounded-full px-2 py-1 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden',
   {
     variants: {
       variant: {
@@ -17,9 +17,9 @@ const badgeVariants = cva(
           'border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline:
           'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
-        none: 'rounded-sm bg-gray-100 text-gray-500 border-gray-500',
-        decrease: 'rounded-sm bg-green-100 text-green-500 border-green-500',
-        increase: 'rounded-sm bg-red-100 text-red-500 border-red-500',
+        none: 'rounded-sm bg-gray-50 text-gray-600 border-gray-500',
+        decrease: 'rounded-sm bg-green-50 text-green-600 ',
+        increase: 'rounded-sm bg-red-50 text-red-600 border-red-500',
       },
     },
     defaultVariants: {
