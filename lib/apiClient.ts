@@ -13,7 +13,8 @@ export async function apiClient<TData>(
     Authorization: `Bearer ${API_KEY}`,
     'Content-Type': 'application/json',
   };
-  console.log(API_KEY);
+  console.log('API Key:', API_KEY);
+  console.log('Base URL:', BASE_URL);
 
   const isISR = options.next?.revalidate !== undefined;
   const defaultCache: RequestCache = isISR ? 'force-cache' : 'no-store';
