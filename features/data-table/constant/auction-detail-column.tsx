@@ -3,6 +3,9 @@ import { createColumnHelper } from '@tanstack/react-table';
 
 const columnHelper = createColumnHelper<AuctionItemDetail>();
 export const auction_detail_columns = [
+  columnHelper.display({
+    id: 'index',
+  }),
   columnHelper.accessor('Date', {
     header: '날짜',
   }),
