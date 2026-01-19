@@ -47,6 +47,16 @@ export const AUCTION_COLUMNS = [
     ),
   }),
   columnHelper.accessor('Name', { header: '아이템명' }),
+  columnHelper.accessor('Grade', {
+    header: () => <div className="text-center">등급</div>,
+    cell: ({ row }) => {
+      return (
+        <div className="text-center ">
+          <Badge variant={row.getValue('Grade')}>{row.getValue('Grade')}</Badge>
+        </div>
+      );
+    },
+  }),
   columnHelper.accessor('CurrentMinPrice', {
     header: () => <div className="text-right">현재 최저가</div>,
     meta: { align: 'right' },
