@@ -29,6 +29,7 @@ export async function apiClient<TData>(
   };
 
   const response = await fetch(`${BASE_URL}${path}`, mergedOptions);
+  console.log(response);
 
   if (!response.ok) {
     const errorBody = await response.json().catch(() => ({}));
