@@ -44,21 +44,23 @@ export function Chart<TData extends { Date: string }>({
   chartConfig,
 }: ChartProps<TData>) {
   const chartKeys = Object.keys(chartConfig);
-  console.log(chartKeys);
+
   return (
-    <Card className="w-full">
+    <Card className="w-full h-full">
       <CardHeader>
         <CardTitle>{chartTitle}</CardTitle>
         <CardDescription>{chartDescription}</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="w-full max-h-160">
+        <ChartContainer config={chartConfig} className="w-full h-[40vh] ">
           <ComposedChart
             accessibilityLayer
             data={chartData}
             margin={{
               left: 12,
               right: 12,
+              top: 10,
+              bottom: 10,
             }}
           >
             <CartesianGrid vertical={false} />
@@ -75,6 +77,7 @@ export function Chart<TData extends { Date: string }>({
                 });
               }}
             />
+            {/* ... 나머지 YAxis, Tooltip 등 ... */}
             <YAxis
               yAxisId={'AvgPrice'}
               tickLine={false}
@@ -87,7 +90,6 @@ export function Chart<TData extends { Date: string }>({
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              padding={{ top: 100 }}
               width={48}
               hide={true}
             />
