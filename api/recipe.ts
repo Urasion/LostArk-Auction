@@ -47,6 +47,5 @@ export async function getRecipeDetail(id: string) {
     Item.Stats.reverse();
     return Item;
   });
-  console.log('sorted_data', sorted_data);
-  return sorted_data;
+  return sorted_data[1];
 }

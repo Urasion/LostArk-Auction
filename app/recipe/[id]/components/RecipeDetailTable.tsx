@@ -10,7 +10,7 @@ export default async function RecipeDetailTable({ id }: Props) {
 
   return (
     <div className="h-full overflow-y-auto scrollbar-hide">
-      <DataTable data={data[1].Stats} columns={auction_detail_columns} />
+      <DataTable data={data.Stats} columns={auction_detail_columns} />
     </div>
   );
 }

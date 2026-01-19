@@ -20,9 +20,9 @@ export default async function RecipeDetailChart({ id }: Props) {
   } satisfies ChartConfig;
   return (
     <Chart
-      chartTitle={data[1].Name}
+      chartTitle={data.Name}
       chartDescription="최근 2주일간의 거래정보가 표시됩니다."
-      chartData={data[1].Stats}
+      chartData={data.Stats}
       chartConfig={chartConfig}
     />
   );

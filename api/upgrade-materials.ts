@@ -46,5 +46,5 @@ export async function getUpgradeMaterialsDetail(id: string) {
     Item.Stats.reverse();
     return Item;
   });
-  return sorted_data;
+  return sorted_data[0];
 }
