@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lost Ark Auction Tracker
 
-## Getting Started
+This is a web application built with Next.js to track and visualize auction house data for the game Lost Ark. It provides up-to-date pricing information for various in-game items like gems, upgrade materials, and crafting recipes.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+-   **Real-time Data:** Fetches and displays current auction house prices.
+-   **Data Visualization:** Interactive charts to visualize price trends over time.
+-   **Categorized Items:** Browse items by categories: Gems, Upgrade Materials, and Recipes.
+-   **Responsive Design:** Fully responsive layout for both desktop and mobile devices.
+-   **Dark Mode:** Switch between light and dark themes.
+-   **Component Library:** Uses Storybook for isolated component development and testing.
+
+## 🛠️ Tech Stack
+
+-   **Framework:** [Next.js](https://nextjs.org/)
+-   **Language:** [TypeScript](https://www.typescriptlang.org/)
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+-   **UI Components:** [Shadcn/UI](https://ui.shadcn.com/)
+-   **Data Fetching:** [TanStack Query](https://tanstack.com/query)
+-   **State Management:** [Jotai](https://jotai.org/)
+-   **Tables:** [TanStack Table](https://tanstack.com/table)
+-   **Charts:** [Recharts](https://recharts.org/)
+-   **Linting:** [ESLint](https://eslint.org/)
+-   **Testing:** [Vitest](https://vitest.dev/)
+-   **Component Development:** [Storybook](https://storybook.js.org/)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+-   Node.js (v20.x or higher recommended)
+-   npm, yarn, or pnpm
+
+### Installation & Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/lostark-auction.git
+    cd lostark-auction
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    # or
+    pnpm install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+## 📜 Available Scripts
+
+-   `npm run dev`: Starts the development server.
+-   `npm run build`: Creates a production-ready build.
+-   `npm run start`: Starts the production server.
+-   `npm run lint`: Runs the ESLint linter to check for code quality issues.
+-   `npm run storybook`: Starts the Storybook server for component development.
+-   `npm run build-storybook`: Builds Storybook for deployment.
+
+## 📁 Project Structure
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+.
+├── app/                  # Next.js App Router pages
+│   ├── gem/              # Gem-related pages
+│   ├── recipe/           # Recipe-related pages
+│   └── upgrade/          # Upgrade material-related pages
+├── components/           # Shared UI components (via Shadcn/UI)
+├── features/             # Feature-specific components and logic
+│   ├── data-chart/       # Reusable chart component
+│   ├── data-table/       # Reusable table component
+│   └── sidebar/          # Sidebar layout and components
+├── lib/                  # Utility functions and API client
+├── public/               # Static assets
+├── store/                # Global state management (Jotai)
+├── stories/              # Storybook stories
+└── ...
+```
