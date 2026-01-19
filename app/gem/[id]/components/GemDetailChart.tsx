@@ -11,11 +11,11 @@ export default async function GemDetailChart({ id }: Props) {
   const chartConfig = {
     AvgPrice: {
       label: '평균거래가',
-      color: 'var(--chart-3)',
+      color: 'var(--chart-price)',
     },
     TradeCount: {
       label: '거래량',
-      color: 'var(--chart-2)',
+      color: 'var(--chart-volume)',
     },
   } satisfies ChartConfig;
   return (
