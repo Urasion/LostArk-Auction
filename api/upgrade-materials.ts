@@ -10,7 +10,7 @@ import { delay } from '@/utils/utils';
 export async function getUpgradeMaterials(request: AuctionItemRequest) {
   let pageNo = 1;
   let isRunning = true;
-  const recipe_list: AuctionItem[] = [];
+  const upgrade_materials: AuctionItem[] = [];
   while (isRunning) {
     const data = await apiClient<AuctionItemResponse>('/markets/items', {
       method: 'POST',
@@ -28,11 +28,11 @@ export async function getUpgradeMaterials(request: AuctionItemRequest) {
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
     }
-    recipe_list.push(...data.Items);
+    upgrade_materials.push(...data.Items);
     pageNo++;
-    await delay(200);
+    await delay(100);
   }
-  return recipe_list;
+  return upgrade_materials;
 }
 export async function getUpgradeMaterialsDetail(id: string) {
   const data = await apiClient<AuctionItemDetailResponse[]>(

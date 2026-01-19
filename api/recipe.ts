@@ -30,7 +30,7 @@ export async function getRecipeList(request: AuctionItemRequest) {
     }
     recipe_list.push(...data.Items);
     pageNo++;
-    await delay(200);
+    await delay(100);
   }
   return recipe_list;
 }
