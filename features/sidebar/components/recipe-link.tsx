@@ -23,7 +23,7 @@ export default function RecipeLink({ isMobile }: Props) {
           <BookOpenText className="size-5 shrink-0" />
           <p
             className={cn(
-              'absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2  whitespace-nowrap transition-opacity opacity-0 text-base',
+              'absolute top-1/2 -translate-y-1/2 left-1/5 whitespace-nowrap transition-opacity opacity-0 text-base',
               'group-data-[state-sidebar-open=true]:opacity-100 group-data-[state-sidebar-open=true]:duration-300 group-data-[state-sidebar-open=true]:delay-100'
             )}
           >

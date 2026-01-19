@@ -50,7 +50,7 @@ export default function PcSidebar({ defaultOpen, children }: Props) {
         </Link>
       </div>
 
-      <div className="flex flex-col grow justify-between pt-10 pb-4 px-2 overflow-hidden">
+      <div className="flex flex-col grow justify-between pt-10 pb-4 px-2 overflow-hidden group-data-[state-sidebar-open=true]:px-4 ">
         <div className="flex flex-col grow gap-y-4 scrollbar-hide">
           {children}
         </div>
