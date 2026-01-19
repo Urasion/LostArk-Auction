@@ -20,10 +20,16 @@ const badgeVariants = cva(
         none: 'rounded-sm bg-gray-50 text-gray-600 border-gray-500',
         decrease: 'rounded-sm bg-green-50 text-green-600 ',
         increase: 'rounded-sm bg-red-50 text-red-600 border-red-500',
+        고대: 'rounded-sm bg-[#8C6928]/5 text-[#8C6928] border-[[#E3C7A1]/30',
+        희귀: 'rounded-sm bg-blue-50 text-blue-600 border-blue-500',
+        유물: 'rounded-sm bg-orange-50 text-orange-600 border-orange-500',
+        영웅: 'rounded-sm bg-violet-50 text-violet-600 border-violet-500',
+        전설: 'rounded-sm bg-yellow-50 text-yellow-600 border-yellow-500',
+        고급: 'rounded-sm bg-green-50 text-green-600 border-green-500',
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'none',
     },
   }
 );
