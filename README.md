@@ -1,86 +1,86 @@
-# Lost Ark Auction Tracker
+# 로아 시세
 
-This is a web application built with Next.js to track and visualize auction house data for the game Lost Ark. It provides up-to-date pricing information for various in-game items like gems, upgrade materials, and crafting recipes.
+이 프로젝트는 Lost Ark 게임의 경매장 데이터를 추적하고 시각화하기 위해 Next.js로 구축된 웹 애플리케이션입니다. 보석, 재련 재료, 각인 레시피와 같은 다양한 게임 내 아이템에 대한 최신 가격 정보를 제공합니다.
 
-## ✨ Features
+## ✨ 주요 기능
 
--   **Real-time Data:** Fetches and displays current auction house prices.
--   **Data Visualization:** Interactive charts to visualize price trends over time.
--   **Categorized Items:** Browse items by categories: Gems, Upgrade Materials, and Recipes.
--   **Responsive Design:** Fully responsive layout for both desktop and mobile devices.
--   **Dark Mode:** Switch between light and dark themes.
--   **Component Library:** Uses Storybook for isolated component development and testing.
+-   **실시간 데이터:** 현재 경매장 가격을 가져와 표시합니다.
+-   **데이터 시각화:** 시간 경과에 따른 가격 추세를 시각화하는 대화형 차트.
+-   **카테고리별 아이템:** 보석, 재련 재료, 레시피와 같은 카테고리별로 아이템을 찾아볼 수 있습니다.
+-   **반응형 디자인:** 데스크톱 및 모바일 장치 모두를 위한 완전 반응형 레이아웃.
+-   **다크 모드:** 라이트 및 다크 테마 간 전환.
+-   **컴포넌트 라이브러리:** 격리된 컴포넌트 개발 및 테스트를 위해 Storybook을 사용합니다.
 
-## 🛠️ Tech Stack
+## 🛠️ 기술 스택
 
--   **Framework:** [Next.js](https://nextjs.org/)
--   **Language:** [TypeScript](https://www.typescriptlang.org/)
--   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
--   **UI Components:** [Shadcn/UI](https://ui.shadcn.com/)
--   **Data Fetching:** [TanStack Query](https://tanstack.com/query)
--   **State Management:** [Jotai](https://jotai.org/)
--   **Tables:** [TanStack Table](https://tanstack.com/table)
--   **Charts:** [Recharts](https://recharts.org/)
--   **Linting:** [ESLint](https://eslint.org/)
--   **Testing:** [Vitest](https://vitest.dev/)
--   **Component Development:** [Storybook](https://storybook.js.org/)
+-   **프레임워크:** [Next.js](https://nextjs.org/)
+-   **언어:** [TypeScript](https://www.typescriptlang.org/)
+-   **스타일링:** [Tailwind CSS](https://tailwindcss.com/)
+-   **UI 컴포넌트:** [Shadcn/UI](https://ui.shadcn.com/)
+-   **데이터 페칭:** [TanStack Query](https://tanstack.com/query)
+-   **상태 관리:** [Jotai](https://jotai.org/)
+-   **테이블:** [TanStack Table](https://tanstack.com/table)
+-   **차트:** [Recharts](https://recharts.org/)
+-   **린팅:** [ESLint](https://eslint.org/)
+-   **테스팅:** [Vitest](https://vitest.dev/)
+-   **컴포넌트 개발:** [Storybook](https://storybook.js.org/)
 
-## 🚀 Getting Started
+## 🚀 시작하기
 
-### Prerequisites
+### 전제 조건
 
--   Node.js (v20.x or higher recommended)
--   npm, yarn, or pnpm
+-   Node.js (v20.x 이상 권장)
+-   npm, yarn 또는 pnpm
 
-### Installation & Setup
+### 설치 및 설정
 
-1.  **Clone the repository:**
+1.  **리포지토리 복제:**
     ```bash
     git clone https://github.com/your-username/lostark-auction.git
     cd lostark-auction
     ```
 
-2.  **Install dependencies:**
+2.  **의존성 설치:**
     ```bash
     npm install
-    # or
+    # 또는
     yarn install
-    # or
+    # 또는
     pnpm install
     ```
 
-3.  **Run the development server:**
+3.  **개발 서버 실행:**
     ```bash
     npm run dev
     ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 애플리케이션을 확인하세요.
 
-## 📜 Available Scripts
+## 📜 사용 가능한 스크립트
 
--   `npm run dev`: Starts the development server.
--   `npm run build`: Creates a production-ready build.
--   `npm run start`: Starts the production server.
--   `npm run lint`: Runs the ESLint linter to check for code quality issues.
--   `npm run storybook`: Starts the Storybook server for component development.
--   `npm run build-storybook`: Builds Storybook for deployment.
+-   `npm run dev`: 개발 서버를 시작합니다.
+-   `npm run build`: 프로덕션용 빌드를 생성합니다.
+-   `npm run start`: 프로덕션 서버를 시작합니다.
+-   `npm run lint`: ESLint 린터를 실행하여 코드 품질 문제를 확인합니다.
+-   `npm run storybook`: 컴포넌트 개발을 위한 Storybook 서버를 시작합니다.
+-   `npm run build-storybook`: 배포를 위한 Storybook을 빌드합니다.
 
-## 📁 Project Structure
+## 📁 프로젝트 구조
 
 ```
 .
-├── app/                  # Next.js App Router pages
-│   ├── gem/              # Gem-related pages
-│   ├── recipe/           # Recipe-related pages
-│   └── upgrade/          # Upgrade material-related pages
-├── components/           # Shared UI components (via Shadcn/UI)
-├── features/             # Feature-specific components and logic
-│   ├── data-chart/       # Reusable chart component
-│   ├── data-table/       # Reusable table component
-│   └── sidebar/          # Sidebar layout and components
-├── lib/                  # Utility functions and API client
-├── public/               # Static assets
-├── store/                # Global state management (Jotai)
-├── stories/              # Storybook stories
+├── app/                  # Next.js App Router 페이지
+│   ├── gem/              # 보석 관련 페이지
+│   ├── recipe/           # 레시피 관련 페이지
+│   └── upgrade/          # 재련 재료 관련 페이지
+├── components/           # 공유 UI 컴포넌트 (Shadcn/UI 사용)
+├── features/             # 기능별 컴포넌트 및 로직
+│   ├── data-chart/       # 재사용 가능한 차트 컴포넌트
+│   ├── data-table/       # 재사용 가능한 테이블 컴포넌트
+│   └── sidebar/          # 사이드바 레이아웃 및 컴포넌트
+├── lib/                  # 유틸리티 함수 및 API 클라이언트
+├── public/               # 정적 자산
+├── store/                # 전역 상태 관리 (Jotai)
+├── stories/              # Storybook 스토리
 └── ...
 ```
