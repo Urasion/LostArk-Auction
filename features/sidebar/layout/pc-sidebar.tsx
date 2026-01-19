@@ -26,7 +26,7 @@ export default function PcSidebar({ defaultOpen, children }: Props) {
     <aside
       className={cn(
         'hidden h-screen sticky top-0 shrink-0 flex-col border-r bg-sidebar-accent pb-4 xl:flex transition-[width] duration-300 data-[state-sidebar-open=false]:w-14 group',
-        'w-64'
+        'w-64',
       )}
       data-state-sidebar-open={isOpen}
     >
@@ -43,10 +43,10 @@ export default function PcSidebar({ defaultOpen, children }: Props) {
           href={'/'}
           className={cn(
             'absolute top-1/2 -translate-y-1/2 left-4 whitespace-nowrap transition-opacity opacity-0',
-            'group-data-[state-sidebar-open=true]:opacity-100 group-data-[state-sidebar-open=true]:duration-300 group-data-[state-sidebar-open=true]:delay-100'
+            'group-data-[state-sidebar-open=true]:opacity-100 group-data-[state-sidebar-open=true]:duration-300 group-data-[state-sidebar-open=true]:delay-100',
           )}
         >
-          LostArk Auction
+          로아 시세
         </Link>
       </div>
 
