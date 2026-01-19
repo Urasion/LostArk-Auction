@@ -48,36 +48,81 @@ export const AUCTION_COLUMNS = [
   }),
   columnHelper.accessor('Name', { header: '아이템명' }),
   columnHelper.accessor('CurrentMinPrice', {
-    header: '최저가',
+    header: () => <div className="text-right">현재 최저가</div>,
+    meta: { align: 'right' },
+    cell: ({ row }) => {
+      return (
+        <div className="text-right ">
+          <span>{row.getValue('CurrentMinPrice')}</span>
+        </div>
+      );
+    },
+  }),
+  columnHelper.display({
+    id: 'YDayAvgPriceChangeRate',
     cell: ({ row }) => {
       const isPriceIncreasing =
         (row.getValue('YDayAvgPrice') as number) <
         (row.getValue('CurrentMinPrice') as number);
+      const priceDecrease =
+        (row.getValue('CurrentMinPrice') as number) -
+        (row.getValue('YDayAvgPrice') as number);
+      const current = row.getValue('CurrentMinPrice') as number;
+      const prev = row.getValue('YDayAvgPrice') as number;
+      if (!prev) return '0.00%';
+      const rawRate = ((current - prev) / prev) * 100;
+      const formattedRate = '(' + +rawRate.toFixed(2) + '%' + ')';
+
       return (
         <Badge variant={isPriceIncreasing ? 'increase' : 'decrease'}>
-          {row.getValue('CurrentMinPrice')}{' '}
           {isPriceIncreasing ? <ArrowUp /> : <ArrowDown />}
+          {priceDecrease.toFixed(1)}
+          <span className="text-[11px]"> {formattedRate}</span>
         </Badge>
       );
     },
   }),
+
   columnHelper.accessor('YDayAvgPrice', {
-    header: '전일 평균 거래가',
+    header: () => <div className="text-right">전일 평군 거래가</div>,
     cell: ({ row }) => {
-      return <Badge variant={'none'}>{row.getValue('YDayAvgPrice')}</Badge>;
+      return (
+        <div className="text-right ">
+          <span>{row.getValue('YDayAvgPrice')}</span>
+        </div>
+      );
     },
   }),
   columnHelper.accessor('RecentPrice', {
-    header: '최근 거래가',
+    header: () => <div className="text-right">최근 거래가</div>,
+    cell: ({ row }) => {
+      return (
+        <div className="text-right ">
+          <span>{row.getValue('RecentPrice')}</span>
+        </div>
+      );
+    },
+  }),
+  columnHelper.display({
+    id: 'RecentPriceChangeRate',
     cell: ({ row }) => {
       const isPriceIncreasing =
         (row.getValue('YDayAvgPrice') as number) <
         (row.getValue('RecentPrice') as number);
+      const priceDecrease =
+        (row.getValue('RecentPrice') as number) -
+        (row.getValue('YDayAvgPrice') as number);
+      const current = row.getValue('RecentPrice') as number;
+      const prev = row.getValue('YDayAvgPrice') as number;
+      if (!prev) return '0.00%';
+      const rawRate = ((current - prev) / prev) * 100;
+      const formattedRate = '(' + +rawRate.toFixed(2) + '%' + ')';
 
       return (
         <Badge variant={isPriceIncreasing ? 'increase' : 'decrease'}>
-          {row.getValue('RecentPrice')}{' '}
           {isPriceIncreasing ? <ArrowUp /> : <ArrowDown />}
+          {priceDecrease.toFixed(1)}
+          <span className="text-[11px]"> {formattedRate}</span>
         </Badge>
       );
     },
