@@ -13,8 +13,6 @@ export async function apiClient<TData>(
     Authorization: `Bearer ${API_KEY}`,
     'Content-Type': 'application/json',
   };
-  console.log('API Key:', API_KEY);
-  console.log('Base URL:', BASE_URL);
 
   const isISR = options.next?.revalidate !== undefined;
   const defaultCache: RequestCache = isISR ? 'force-cache' : 'no-store';
@@ -29,7 +27,6 @@ export async function apiClient<TData>(
   };
 
   const response = await fetch(`${BASE_URL}${path}`, mergedOptions);
-  console.log(response);
 
   if (!response.ok) {
     const errorBody = await response.json().catch(() => ({}));
