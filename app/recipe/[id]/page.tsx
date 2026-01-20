@@ -13,7 +13,9 @@ export default async function Page({ params }: RecipeDetailPageProps) {
 
   return (
     <>
-      <Suspense fallback={<Skeleton className="h-180 w-full" />}>
+      <Suspense
+        fallback={<Skeleton className="h-110 xl:h-180 w-180 xl:grow" />}
+      >
         <RecipeDetailChart id={id} />
       </Suspense>
       <Suspense

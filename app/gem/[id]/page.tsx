@@ -13,7 +13,9 @@ export default async function Page({ params }: GemDetailPageProps) {
 
   return (
     <>
-      <Suspense fallback={<Skeleton className="h-180 w-full" />}>
+      <Suspense
+        fallback={<Skeleton className="h-110 xl:h-180 w-180 xl:grow" />}
+      >
         <GemDetailChart id={id} />
       </Suspense>
       <Suspense
