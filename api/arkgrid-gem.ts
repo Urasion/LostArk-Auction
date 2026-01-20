@@ -38,7 +38,7 @@ async function fetchArkgridGem(request: AuctionItemRequest) {
 export const getArkgridGem = unstable_cache(
   fetchArkgridGem,
   ['arkgrid-gem-list'],
-  { revalidate: 600, tags: ['gems'] },
+  { revalidate: 300, tags: ['gems'] },
 );
 
 export async function getArkgridGemDetail(id: string) {

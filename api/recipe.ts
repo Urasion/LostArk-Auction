@@ -24,7 +24,6 @@ async function fetchRecipeList(request: AuctionItemRequest) {
         CategoryCode: 40000,
         SortCondition: 'DESC',
       }),
-      next: { revalidate: 600 },
     });
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
@@ -37,7 +36,7 @@ async function fetchRecipeList(request: AuctionItemRequest) {
 }
 
 export const getRecipeList = unstable_cache(fetchRecipeList, ['recipe-list'], {
-  revalidate: 1,
+  revalidate: 300,
   tags: ['recipes'],
 });
 

@@ -24,7 +24,6 @@ async function fetchUpgradeMaterials(request: AuctionItemRequest) {
         CategoryCode: 50000,
         SortCondition: 'DESC',
       }),
-      next: { revalidate: 600 },
     });
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
@@ -39,7 +38,7 @@ async function fetchUpgradeMaterials(request: AuctionItemRequest) {
 export const getUpgradeMaterials = unstable_cache(
   fetchUpgradeMaterials,
   ['upgrade-materials-list'],
-  { revalidate: 600, tags: ['upgrade-materials'] },
+  { revalidate: 300, tags: ['upgrade-materials'] },
 );
 
 export async function getUpgradeMaterialsDetail(id: string) {
