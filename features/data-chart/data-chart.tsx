@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { motion } from 'framer-motion';
 import {
   Bar,
   CartesianGrid,
@@ -46,81 +47,90 @@ export function Chart<TData extends { Date: string }>({
   const chartKeys = Object.keys(chartConfig);
 
   return (
-    <Card className="w-full h-full">
-      <CardHeader>
-        <CardTitle>{chartTitle}</CardTitle>
-        <CardDescription>{chartDescription}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig} className="w-full h-[40vh] ">
-          <ComposedChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              left: 12,
-              right: 12,
-              top: 10,
-              bottom: 10,
-            }}
-          >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="Date"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => {
-                const date = new Date(value);
-                return date.toLocaleDateString('ko-KR', {
-                  month: 'short',
-                  day: 'numeric',
-                });
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.4,
+        ease: 'easeOut',
+      }}
+    >
+      <Card className="w-full h-full">
+        <CardHeader>
+          <CardTitle>{chartTitle}</CardTitle>
+          <CardDescription>{chartDescription}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ChartContainer config={chartConfig} className="w-full h-[40vh] ">
+            <ComposedChart
+              accessibilityLayer
+              data={chartData}
+              margin={{
+                left: 12,
+                right: 12,
+                top: 10,
+                bottom: 10,
               }}
-            />
-            {/* ... 나머지 YAxis, Tooltip 등 ... */}
-            <YAxis
-              yAxisId={'AvgPrice'}
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              width={48}
-            />
-            <YAxis
-              yAxisId={'TradeCount'}
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              width={48}
-              hide={true}
-            />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <ChartLegend content={<ChartLegendContent />} />
-
-            <Bar
-              radius={8}
-              dataKey={chartKeys[1]}
-              type="linear"
-              yAxisId="TradeCount"
-              fill="var(--color-TradeCount)"
-              stroke="var(--color-TradeCount)"
             >
-              <LabelList
-                position="top"
-                offset={12}
-                className="fill-foreground"
-                fontSize={12}
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="Date"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                tickFormatter={(value) => {
+                  const date = new Date(value);
+                  return date.toLocaleDateString('ko-KR', {
+                    month: 'short',
+                    day: 'numeric',
+                  });
+                }}
               />
-            </Bar>
-            <Line
-              dataKey={chartKeys[0]}
-              type="linear"
-              fill="var(--color-AvgPrice)"
-              yAxisId="AvgPrice"
-              stroke="var(--color-AvgPrice)"
-            />
-          </ComposedChart>
-        </ChartContainer>
-      </CardContent>
-    </Card>
+              {/* ... 나머지 YAxis, Tooltip 등 ... */}
+              <YAxis
+                yAxisId={'AvgPrice'}
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                width={48}
+              />
+              <YAxis
+                yAxisId={'TradeCount'}
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                width={48}
+                hide={true}
+              />
+              <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+              <ChartLegend content={<ChartLegendContent />} />
+
+              <Bar
+                radius={8}
+                dataKey={chartKeys[1]}
+                type="linear"
+                yAxisId="TradeCount"
+                fill="var(--color-TradeCount)"
+                stroke="var(--color-TradeCount)"
+              >
+                <LabelList
+                  position="top"
+                  offset={12}
+                  className="fill-foreground"
+                  fontSize={12}
+                />
+              </Bar>
+              <Line
+                dataKey={chartKeys[0]}
+                type="linear"
+                fill="var(--color-AvgPrice)"
+                yAxisId="AvgPrice"
+                stroke="var(--color-AvgPrice)"
+              />
+            </ComposedChart>
+          </ChartContainer>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 }

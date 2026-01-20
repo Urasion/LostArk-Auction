@@ -53,9 +53,15 @@ export function DataTable<TData>({
     <div>
       <motion.div
         className="rounded-xl bg-card border relative min-w-180 overflow-y-auto w-full max-h-full scrollbar-hide"
-        initial={{ opacity: 0.2, y: 20 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{
+          duration: 0.4,
+          ease: 'easeOut',
+          type: 'spring',
+          stiffness: 100,
+          damping: 20,
+        }}
       >
         <Table className="w-full caption-bottom text-sm">
           <TableHeader className="w-full caption-bottom text-sm">
@@ -68,7 +74,7 @@ export function DataTable<TData>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   );
@@ -91,7 +97,7 @@ export function DataTable<TData>({
                     <TableCell key={cell.id} className="">
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
