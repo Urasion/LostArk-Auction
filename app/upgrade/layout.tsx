@@ -2,25 +2,28 @@ import { ReactNode, Suspense } from 'react';
 import UpgradeMaterialsSidebar from './components/UpgradeMaterialsSidebar';
 import { DataTableSkeleton } from '@/features/data-table/data-table-skeleton';
 import { AUCTION_SKELETON_COLUMNS } from '@/features/data-table/constant/auction-skeleton';
+import MobileWrapper from '@/components/common/mobile-wrapper';
 
 interface Props {
   children: ReactNode;
 }
 export default function Layout({ children }: Props) {
   return (
-    <div className="flex h-[95dvh] items-center grow gap-x-4">
+    <div className="flex h-[90dvh] items-center grow gap-x-4">
       <div className="flex flex-col h-full grow gap-y-4 ">{children}</div>
-      <Suspense
-        fallback={
-          <DataTableSkeleton
-            columns={AUCTION_SKELETON_COLUMNS}
-            rowCount={30}
-            className="max-w-[40%]"
-          />
-        }
-      >
-        <UpgradeMaterialsSidebar />
-      </Suspense>
+      <MobileWrapper>
+        <Suspense
+          fallback={
+            <DataTableSkeleton
+              columns={AUCTION_SKELETON_COLUMNS}
+              rowCount={30}
+              className="max-w-[40%]"
+            />
+          }
+        >
+          <UpgradeMaterialsSidebar />
+        </Suspense>
+      </MobileWrapper>
     </div>
   );
 }

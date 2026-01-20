@@ -9,7 +9,7 @@ export default async function RecipeDetailTable({ id }: Props) {
   const data = await getRecipeDetail(id);
 
   return (
-    <div className="h-full rounded-lg border overflow-y-auto scrollbar-hide">
+    <div className="h-full xl:rounded-lg xl:border overflow-y-auto scrollbar-hide xl:max-w-full">
       <DataTable data={data.Stats} columns={AUCTION_DETAIL_COLUMNS} />
     </div>
   );

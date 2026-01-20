@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import ItemPlaceHolder from '@/components/common/item-placeholder';
 
 export default function Page() {
-  redirect('/gem/67400003');
+  return <ItemPlaceHolder />;
 }

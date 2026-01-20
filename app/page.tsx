@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import ItemPlaceHolder from '@/components/common/item-placeholder';
 
-export default async function Home() {
-  redirect('/recipe');
+export default function Page() {
+  return <ItemPlaceHolder />;
 }

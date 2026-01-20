@@ -5,14 +5,15 @@ import { createColumnHelper } from '@tanstack/react-table';
 const columnHelper = createColumnHelper<AuctionItemDetail>();
 export const AUCTION_DETAIL_COLUMNS = [
   columnHelper.accessor('Date', {
-    header: () => <div className="text-right">날짜</div>,
+    header: () => <div className="text-center">날짜</div>,
     cell: ({ row }) => {
       return (
-        <div className="text-right ">
+        <div className="text-center ">
           <span>{row.getValue('Date')}</span>
         </div>
       );
     },
+    size: 20,
   }),
   columnHelper.accessor('AvgPrice', {
     header: () => <div className="text-right">평균 거래가</div>,
@@ -24,15 +25,17 @@ export const AUCTION_DETAIL_COLUMNS = [
         </div>
       );
     },
+    size: 40,
   }),
   columnHelper.accessor('TradeCount', {
-    header: () => <div className="text-right">거래량</div>,
+    header: () => <div className="text-right xl:pr-20 pr-10">거래량</div>,
     cell: ({ row }) => {
       return (
-        <div className="text-right ">
+        <div className="text-right xl:pr-20 pr-10">
           <span>{row.getValue('TradeCount')}</span>
         </div>
       );
     },
+    size: 40,
   }),
 ];

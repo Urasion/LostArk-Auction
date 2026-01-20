@@ -5,6 +5,7 @@ import Sidebar from '@/features/sidebar/layout/sidebar';
 import { ThemeScript } from '@/features/provider/theme-script';
 import QueryClientProviders from '@/features/provider/queryclient-provider';
 import { Provider } from 'jotai';
+import Header from '@/features/header/Header';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -83,7 +84,8 @@ export default function RootLayout({
           <QueryClientProviders>
             <div className="flex grow">
               <Sidebar />
-              <main className="flex grow items-center bg-white dark:bg-black p-4">
+              <main className="flex flex-col xl:flex-row grow items-center bg-white dark:bg-black p-4 gap-y-4 xl:gap-y-0">
+                <Header />
                 {children}
               </main>
             </div>

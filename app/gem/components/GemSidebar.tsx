@@ -6,9 +6,5 @@ export default async function GemSidebar() {
     ItemGrade: '',
     ItemName: '',
   });
-  return (
-    <div className="flex h-full shrink-0">
-      <GemTable data={gems} />
-    </div>
-  );
+  return <GemTable data={gems} />;
 }
