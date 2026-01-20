@@ -17,7 +17,7 @@ export default function Layout({ children }: Props) {
             <DataTableSkeleton
               columns={AUCTION_SKELETON_COLUMNS}
               rowCount={30}
-              className="max-w-[40%]"
+              className="w-200"
             />
           }
         >

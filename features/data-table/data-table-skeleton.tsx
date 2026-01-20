@@ -26,15 +26,17 @@ export function DataTableSkeleton({
   return (
     <div
       className={cn(
-        'rounded-xl bg-card border relative  overflow-y-auto w-full max-h-full scrollbar-hide',
+        'rounded-xl bg-card border relative  overflow-y-auto w-full max-h-full scrollbar-hide ',
         className,
       )}
     >
-      <Table>
-        <TableHeader>
+      <Table className="w-full caption-bottom text-sm">
+        <TableHeader className="w-full caption-bottom text-sm">
           <TableRow>
             {columns.map((col, index) => (
-              <TableHead key={index}>{col.header}</TableHead>
+              <TableHead key={col.header + index} className="sticky top-0 z-10">
+                {col.header}
+              </TableHead>
             ))}
           </TableRow>
         </TableHeader>
