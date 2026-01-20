@@ -6,8 +6,9 @@ import {
   AuctionItemResponse,
 } from '@/store/auction';
 import { delay } from '@/utils/utils';
+import { unstable_cache } from 'next/cache';
 
-export async function getRecipeList(request: AuctionItemRequest) {
+async function fetchRecipeList(request: AuctionItemRequest) {
   let pageNo = 1;
   let isRunning = true;
   const recipe_list: AuctionItem[] = [];
@@ -35,13 +36,18 @@ export async function getRecipeList(request: AuctionItemRequest) {
   return recipe_list;
 }
 
+export const getRecipeList = unstable_cache(fetchRecipeList, ['recipe-list'], {
+  revalidate: 1,
+  tags: ['recipes'],
+});
+
 export async function getRecipeDetail(id: string) {
   const data = await apiClient<AuctionItemDetailResponse[]>(
     `/markets/items/${id}`,
     {
       method: 'GET',
       next: { revalidate: 600 },
-    }
+    },
   );
   const sorted_data = data.map((Item) => {
     Item.Stats.reverse();

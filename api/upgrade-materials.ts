@@ -6,8 +6,9 @@ import {
   AuctionItemResponse,
 } from '@/store/auction';
 import { delay } from '@/utils/utils';
+import { unstable_cache } from 'next/cache';
 
-export async function getUpgradeMaterials(request: AuctionItemRequest) {
+async function fetchUpgradeMaterials(request: AuctionItemRequest) {
   let pageNo = 1;
   let isRunning = true;
   const upgrade_materials: AuctionItem[] = [];
@@ -34,13 +35,20 @@ export async function getUpgradeMaterials(request: AuctionItemRequest) {
   }
   return upgrade_materials;
 }
+
+export const getUpgradeMaterials = unstable_cache(
+  fetchUpgradeMaterials,
+  ['upgrade-materials-list'],
+  { revalidate: 600, tags: ['upgrade-materials'] },
+);
+
 export async function getUpgradeMaterialsDetail(id: string) {
   const data = await apiClient<AuctionItemDetailResponse[]>(
     `/markets/items/${id}`,
     {
       method: 'GET',
       next: { revalidate: 600 },
-    }
+    },
   );
   const sorted_data = data.map((Item) => {
     Item.Stats.reverse();

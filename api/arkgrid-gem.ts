@@ -6,8 +6,9 @@ import {
   AuctionItemResponse,
 } from '@/store/auction';
 import { delay } from '@/utils/utils';
+import { unstable_cache } from 'next/cache';
 
-export async function getArkgridGem(request: AuctionItemRequest) {
+async function fetchArkgridGem(request: AuctionItemRequest) {
   let pageNo = 1;
   let isRunning = true;
   const arkgrid_gem: AuctionItem[] = [];
@@ -23,7 +24,6 @@ export async function getArkgridGem(request: AuctionItemRequest) {
         CategoryCode: 230000,
         SortCondition: 'DESC',
       }),
-      next: { revalidate: 600 },
     });
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
@@ -34,13 +34,20 @@ export async function getArkgridGem(request: AuctionItemRequest) {
   }
   return arkgrid_gem;
 }
+
+export const getArkgridGem = unstable_cache(
+  fetchArkgridGem,
+  ['arkgrid-gem-list'],
+  { revalidate: 600, tags: ['gems'] },
+);
+
 export async function getArkgridGemDetail(id: string) {
   const data = await apiClient<AuctionItemDetailResponse[]>(
     `/markets/items/${id}`,
     {
       method: 'GET',
       next: { revalidate: 600 },
-    }
+    },
   );
   const sorted_data = data.map((Item) => {
     Item.Stats.reverse();
