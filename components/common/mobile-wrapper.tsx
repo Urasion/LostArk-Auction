@@ -17,7 +17,7 @@ export default function MobileWrapper({ children }: { children: ReactNode }) {
         flex h-full shrink-0 
         grow xl:grow-0 
         justify-center xl:justify-start 
-        items-center xl:items-start
+        items-start
       `}
     >
       {children}
