@@ -1,4 +1,3 @@
-import { ColumnDef } from '@tanstack/react-table';
 import {
   Table,
   TableBody,
@@ -8,48 +7,49 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 
-interface DataTableSkeletonProps<TData> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  columns: ColumnDef<TData, any>[];
+interface ColumnDef {
+  header: string;
+}
+interface DataTableSkeletonProps {
+  columns: ColumnDef[];
   rowCount?: number;
+  className?: string;
 }
 
-export function DataTableSkeleton<TData>({
+export function DataTableSkeleton({
   columns,
   rowCount = 10,
-}: DataTableSkeletonProps<TData>) {
+  className,
+}: DataTableSkeletonProps) {
   return (
-    <div>
-      <div className="space-y-4 rounded-xl border min-w-180">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              {columns.map((col, index) => (
-                <TableHead key={index}>
-                  <Skeleton className="h-4 w-[80px]" />
-                </TableHead>
+    <div
+      className={cn(
+        'rounded-xl bg-card border relative  overflow-y-auto w-full max-h-full scrollbar-hide',
+        className,
+      )}
+    >
+      <Table>
+        <TableHeader>
+          <TableRow>
+            {columns.map((col, index) => (
+              <TableHead key={index}>{col.header}</TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody className="overlfow-y-auto scrollbar-hide">
+          {Array.from({ length: rowCount }).map((_, rowIndex) => (
+            <TableRow key={rowIndex}>
+              {columns.map((_, colIndex) => (
+                <TableCell key={colIndex}>
+                  <Skeleton className="h-12 w-full" />
+                </TableCell>
               ))}
             </TableRow>
-          </TableHeader>
-          <TableBody>
-            {Array.from({ length: rowCount }).map((_, rowIndex) => (
-              <TableRow key={rowIndex}>
-                {columns.map((_, colIndex) => (
-                  <TableCell key={colIndex}>
-                    <Skeleton className="h-12 w-full" />
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
-
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Skeleton className="h-9 w-[60px] rounded-md" />
-        <Skeleton className="h-9 w-[60px] rounded-md" />
-      </div>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 }
