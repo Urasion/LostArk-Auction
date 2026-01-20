@@ -55,13 +55,16 @@ export function Chart<TData extends { Date: string }>({
         ease: 'easeOut',
       }}
     >
-      <Card className="w-full h-full">
+      <Card className="w-full h-full ">
         <CardHeader>
           <CardTitle>{chartTitle}</CardTitle>
           <CardDescription>{chartDescription}</CardDescription>
         </CardHeader>
         <CardContent>
-          <ChartContainer config={chartConfig} className="w-full h-[40vh] ">
+          <ChartContainer
+            config={chartConfig}
+            className="aspect-auto h-62.5 w-full xl:h-[40vh]"
+          >
             <ComposedChart
               accessibilityLayer
               data={chartData}
@@ -78,6 +81,7 @@ export function Chart<TData extends { Date: string }>({
                 tickLine={false}
                 axisLine={false}
                 tickMargin={8}
+                minTickGap={32}
                 tickFormatter={(value) => {
                   const date = new Date(value);
                   return date.toLocaleDateString('ko-KR', {
@@ -86,19 +90,21 @@ export function Chart<TData extends { Date: string }>({
                   });
                 }}
               />
-              {/* ... 나머지 YAxis, Tooltip 등 ... */}
+
               <YAxis
                 yAxisId={'AvgPrice'}
                 tickLine={false}
                 axisLine={false}
                 tickMargin={8}
-                width={48}
+                width={40}
+                tick={{ fontSize: 11 }}
               />
               <YAxis
                 yAxisId={'TradeCount'}
                 tickLine={false}
                 axisLine={false}
                 tickMargin={8}
+                padding={{ top: 150 }}
                 width={48}
                 hide={true}
               />

@@ -69,7 +69,11 @@ export function DataTable<TData>({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className="sticky top-0 z-10">
+                    <TableHead
+                      key={header.id}
+                      className="sticky top-0 z-10"
+                      style={{ width: `${header.getSize()}` }}
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(
