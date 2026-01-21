@@ -9,7 +9,7 @@ interface Props {
 }
 export default function Layout({ children }: Props) {
   return (
-    <div className="flex h-[90dvh] items-center grow gap-x-4">
+    <div className="flex  w-full xl:h-[90dvh] justify-center items-start gap-x-4 ">
       {children}
       <MobileWrapper>
         <Suspense

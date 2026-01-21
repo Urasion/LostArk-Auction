@@ -124,7 +124,7 @@ export function Chart<TData extends { Date: string }>({
                   position="top"
                   offset={12}
                   className="fill-foreground"
-                  fontSize={12}
+                  fontSize={10}
                 />
               </Bar>
               <Line

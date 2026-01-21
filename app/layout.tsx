@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Sidebar from '@/features/sidebar/layout/sidebar';
@@ -16,6 +16,10 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
 });
+
+export const viewport: Viewport = {
+  width: 1024,
+};
 
 export const metadata: Metadata = {
   title: {

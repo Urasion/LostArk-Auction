@@ -7,8 +7,8 @@ export default async function UpgradeMaterialsSidebar() {
     ItemGrade: '',
   });
   return (
-    <div className="flex h-full shrink-0">
+    <>
       <UpgradeMaterialsTable data={upgrade_materials} />
-    </div>
+    </>
   );
 }

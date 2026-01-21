@@ -28,10 +28,10 @@ export const AUCTION_DETAIL_COLUMNS = [
     size: 40,
   }),
   columnHelper.accessor('TradeCount', {
-    header: () => <div className="text-right xl:pr-20 pr-10">거래량</div>,
+    header: () => <div className="text-right pr-20">거래량</div>,
     cell: ({ row }) => {
       return (
-        <div className="text-right xl:pr-20 pr-10">
+        <div className="text-right pr-20">
           <span>{row.getValue('TradeCount')}</span>
         </div>
       );

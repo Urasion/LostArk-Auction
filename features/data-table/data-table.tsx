@@ -55,7 +55,7 @@ export function DataTable<TData>({
   return (
     <motion.div
       className={cn(
-        'flex rounded-xl bg-card border relative xl:overflow-y-auto w-full xl:max-h-full scrollbar-hide',
+        'rounded-xl bg-card border relative overflow-y-auto w-full xl:max-h-full  scrollbar-hide',
         className,
       )}
       initial={{ opacity: 0, y: 20 }}

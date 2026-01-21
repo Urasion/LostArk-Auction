@@ -6,5 +6,9 @@ export default function MobileWrapper({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isMainPage = wrapper_list.includes(pathname);
   const mobileClass = isMainPage ? 'flex' : 'hidden xl:flex';
-  return <div className={`${mobileClass} h-dvh`}>{children}</div>;
+  return (
+    <div className={`${mobileClass} w-full xl:max-w-250 max-h-[90dvh]`}>
+      {children}
+    </div>
+  );
 }
