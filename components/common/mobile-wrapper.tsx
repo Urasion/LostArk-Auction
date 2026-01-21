@@ -1,7 +1,7 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
-const wrapper_list = ['/gem', '/upgrade', '/recipe'];
+const wrapper_list = ['/gem', '/upgrade', '/recipe', '/battle-items'];
 export default function MobileWrapper({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isMainPage = wrapper_list.includes(pathname);
