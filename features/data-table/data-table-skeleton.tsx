@@ -26,7 +26,7 @@ export function DataTableSkeleton({
   return (
     <div
       className={cn(
-        'rounded-xl bg-card border relative  overflow-y-auto w-full max-h-full scrollbar-hide ',
+        'rounded-xl bg-card border relative overflow-y-auto w-full xl:max-h-full  scrollbar-hide',
         className,
       )}
     >
