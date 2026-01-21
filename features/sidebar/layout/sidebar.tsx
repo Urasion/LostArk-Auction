@@ -5,6 +5,7 @@ import MoblieSidebar from './mobile-sidebar';
 
 import PcSidebar from './pc-sidebar';
 import { cookies } from 'next/headers';
+import BattleItemLink from '../components/battle-item-link';
 
 export default async function Sidebar() {
   const cookieStore = await cookies();
@@ -15,6 +16,7 @@ export default async function Sidebar() {
       {/** pc에서는 sidebar */}
       <PcSidebar defaultOpen={pcDefaultOpen}>
         <RecipeLink />
+        <BattleItemLink />
         <UpgradeMaterialsLink />
         <GemLink />
       </PcSidebar>

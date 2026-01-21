@@ -2,7 +2,7 @@ import { ReactNode, Suspense } from 'react';
 import { DataTableSkeleton } from '@/features/data-table/data-table-skeleton';
 import { AUCTION_SKELETON_COLUMNS } from '@/features/data-table/constant/auction-skeleton';
 import MobileWrapper from '@/components/common/mobile-wrapper';
-import RecipeSidebar from './components/RecipeSidebar';
+import BattleItemSidebar from './components/BattleItemSidebar';
 
 interface Props {
   children: ReactNode;
@@ -21,7 +21,7 @@ export default async function Layout({ children }: Props) {
             />
           }
         >
-          <RecipeSidebar />
+          <BattleItemSidebar />
         </Suspense>
       </MobileWrapper>
     </div>

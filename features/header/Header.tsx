@@ -3,6 +3,7 @@ import MoblieSidebar from '../sidebar/layout/mobile-sidebar';
 import RecipeLink from '../sidebar/components/recipe-link';
 import UpgradeMaterialsLink from '../sidebar/components/upgrade-materials-link';
 import GemLink from '../sidebar/components/gem-link';
+import BattleItemLink from '../sidebar/components/battle-item-link';
 
 export default function Header() {
   return (
@@ -12,6 +13,7 @@ export default function Header() {
       </Link>
       <MoblieSidebar>
         <RecipeLink isMobile={true} />
+        <BattleItemLink isMobile={true} />
         <UpgradeMaterialsLink isMobile={true} />
         <GemLink isMobile={true} />
       </MoblieSidebar>

@@ -17,7 +17,7 @@ const badgeVariants = cva(
           'border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline:
           'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
-        none: 'rounded-sm bg-gray-50 text-gray-600 border-gray-500',
+        none: 'rounded-sm bg-gray-50 text-gray-600 dark:bg-gray-500/15 dark:text-gray-400 border-gray-500',
         decrease:
           'rounded-sm bg-green-50 text-green-600 dark:bg-green-500/15 dark:text-green-400',
         increase:
@@ -33,7 +33,7 @@ const badgeVariants = cva(
     defaultVariants: {
       variant: 'none',
     },
-  }
+  },
 );
 
 function Badge({
