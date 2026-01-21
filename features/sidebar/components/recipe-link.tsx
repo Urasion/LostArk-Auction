@@ -11,7 +11,7 @@ export default function RecipeLink({ isMobile }: Props) {
       {isMobile ? (
         <Link
           href={'/recipe'}
-          className="w-full flex items-center justify-start gap-x-4 text-sm font-medium px-6 py-4 transition-colors duration-300 hover:bg-hover-background dark:hover:bg-hover-background border-y"
+          className="w-full flex items-center justify-start gap-x-4 font-medium px-6 py-4 transition-colors duration-300 hover:bg-hover-background dark:hover:bg-hover-background border-y"
         >
           <p className="m-auto text-xl"> 각인서</p>
         </Link>

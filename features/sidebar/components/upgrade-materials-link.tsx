@@ -11,7 +11,7 @@ export default function UpgradeMaterialsLink({ isMobile }: Props) {
       {isMobile ? (
         <Link
           href={'/upgrade'}
-          className="w-full flex items-center justify-start gap-x-4 text-sm font-medium px-6 py-4 transition-colors duration-300 hover:bg-hover-background dark:hover:bg-hover-background border-y"
+          className="w-full flex items-center justify-start gap-x-4 font-medium px-6 py-4 transition-colors duration-300 hover:bg-hover-background dark:hover:bg-hover-background border-y"
         >
           <p className="m-auto text-xl">강화재료</p>
         </Link>
@@ -24,7 +24,7 @@ export default function UpgradeMaterialsLink({ isMobile }: Props) {
           <p
             className={cn(
               'absolute top-1/2 -translate-y-1/2 left-1/5 whitespace-nowrap transition-opacity opacity-0 text-base',
-              'group-data-[state-sidebar-open=true]:opacity-100 group-data-[state-sidebar-open=true]:duration-300 group-data-[state-sidebar-open=true]:delay-100'
+              'group-data-[state-sidebar-open=true]:opacity-100 group-data-[state-sidebar-open=true]:duration-300 group-data-[state-sidebar-open=true]:delay-100',
             )}
           >
             강화재료

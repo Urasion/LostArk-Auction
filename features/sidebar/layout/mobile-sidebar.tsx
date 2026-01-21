@@ -20,13 +20,13 @@ export default function MoblieSidebar({ children }: Props) {
         <DrawerTrigger className="size-fit p-2 xl:hidden absolute right-2 top-0">
           <Menu />
         </DrawerTrigger>
-        <DrawerContent className="max-w-100 xl:hidden py-2 bg-sidebar-accent">
+        <DrawerContent className="max-w-100 xl:hidden py-10 bg-sidebar-accent">
           <DrawerHeader>
-            <DrawerTitle className="text-2xl">
+            <DrawerTitle className="text-lg">
               조회할 항목을 선택해 주세요
             </DrawerTitle>
           </DrawerHeader>
-          <div className="grow py-20">{children}</div>
+          <div className="grow py-12">{children}</div>
           <div className="flex flex-col">
             <ThemeSwitch />
           </div>
