@@ -80,7 +80,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-dvh`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-dvh min-w-5xl`}
         suppressHydrationWarning={true}
       >
         <ThemeScript />
