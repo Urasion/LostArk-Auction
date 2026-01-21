@@ -84,7 +84,7 @@ export default function RootLayout({
           <QueryClientProviders>
             <div className="flex grow">
               <Sidebar />
-              <main className="flex flex-col xl:flex-row grow items-center bg-white dark:bg-black p-4 gap-y-4 xl:gap-y-0">
+              <main className="flex flex-col xl:flex-row grow items-center bg-white dark:bg-black p-4 gap-y-10 xl:gap-y-0">
                 <Header />
                 {children}
               </main>

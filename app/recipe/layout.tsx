@@ -10,7 +10,7 @@ interface Props {
 export default async function Layout({ children }: Props) {
   return (
     <div className="flex h-[90dvh] items-center grow gap-x-4">
-      <div className="flex flex-col h-full grow gap-y-4">{children}</div>
+      {children}
       <MobileWrapper>
         <Suspense
           fallback={

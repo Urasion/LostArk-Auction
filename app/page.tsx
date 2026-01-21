@@ -1,5 +1,5 @@
-import ItemPlaceHolder from '@/components/common/item-placeholder';
+import { redirect } from 'next/navigation';
 
 export default function Page() {
-  return <ItemPlaceHolder />;
+  redirect('/recipe');
 }

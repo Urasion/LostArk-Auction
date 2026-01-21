@@ -12,7 +12,7 @@ export default async function Page({ params }: Props) {
   const { id } = await params;
 
   return (
-    <>
+    <div className="flex flex-col h-full grow gap-y-4 ">
       <Suspense
         fallback={<Skeleton className="h-110 xl:h-180 w-180 xl:grow" />}
       >
@@ -28,6 +28,6 @@ export default async function Page({ params }: Props) {
       >
         <UpgradeMaterialsDetailTable id={id} />
       </Suspense>
-    </>
+    </div>
   );
 }

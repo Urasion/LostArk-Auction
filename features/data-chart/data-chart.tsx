@@ -54,6 +54,7 @@ export function Chart<TData extends { Date: string }>({
         duration: 0.4,
         ease: 'easeOut',
       }}
+      className="min-w-0"
     >
       <Card className="w-full h-full ">
         <CardHeader>

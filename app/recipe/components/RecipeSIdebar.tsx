@@ -7,8 +7,8 @@ export default async function RecipeSidebar() {
     ItemName: '',
   });
   return (
-    <div className="flex h-full shrink-0">
+    <>
       <RecipeTable data={recipes} />
-    </div>
+    </>
   );
 }

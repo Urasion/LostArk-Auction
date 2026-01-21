@@ -6,5 +6,9 @@ export default async function GemSidebar() {
     ItemGrade: '',
     ItemName: '',
   });
-  return <GemTable data={gems} />;
+  return (
+    <>
+      <GemTable data={gems} />
+    </>
+  );
 }
