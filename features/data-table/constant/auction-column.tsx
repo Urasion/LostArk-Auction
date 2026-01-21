@@ -79,7 +79,7 @@ export const AUCTION_COLUMNS = [
         (row.getValue('YDayAvgPrice') as number);
       const current = row.getValue('CurrentMinPrice') as number;
       const prev = row.getValue('YDayAvgPrice') as number;
-      if (!prev) return '0.00%';
+      if (!prev) return <Badge variant={'none'}>{'0.00%'}</Badge>;
       const rawRate = ((current - prev) / prev) * 100;
       const formattedRate = '(' + +rawRate.toFixed(2) + '%' + ')';
 
@@ -124,7 +124,7 @@ export const AUCTION_COLUMNS = [
         (row.getValue('YDayAvgPrice') as number);
       const current = row.getValue('RecentPrice') as number;
       const prev = row.getValue('YDayAvgPrice') as number;
-      if (!prev) return '0.00%';
+      if (!prev) return <Badge variant={'none'}>{'0.00%'}</Badge>;
       const rawRate = ((current - prev) / prev) * 100;
       const formattedRate = '(' + +rawRate.toFixed(2) + '%' + ')';
 
