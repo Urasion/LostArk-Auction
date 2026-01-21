@@ -53,5 +53,5 @@ export async function getBattleItemDetail(id: string) {
     Item.Stats.reverse();
     return Item;
   });
-  return sorted_data[1];
+  return sorted_data[0];
 }
