@@ -26,8 +26,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | 로아 시세',
-    default: '로아 시세',
+    template: '%s | 로아시세',
+    default: '로아시세',
   },
   description:
     '로스트아크 시세 데이터를 보기 쉽게 제공합니다. 각인서, 재련 재료 등의 정보를 확인하세요.',
@@ -35,26 +35,29 @@ export const metadata: Metadata = {
     '로스트아크',
     '로스트아크 경매장',
     '로스트아크 시세',
+    '로아',
+    '로아 경매장',
+    '로아 시세',
     '로스트아크 각인서',
-    '로스트아크 장신구',
-    '로스트아크 어빌리티 스톤',
+    '로아 각인서',
     '로스트아크 재련 재료',
+    '로아 재련 재료',
     'Lost Ark Auction',
     'Lost Ark Market',
   ],
-  authors: [{ name: 'Jeong Jiwon', url: 'https://github.com/jeongjiwon' }],
+  authors: [{ name: 'Jeong Jiwon', url: 'https://github.com/Urasion' }],
   openGraph: {
-    title: '로아 시세',
+    title: '로아시세',
     description:
       '로스트아크 시세 데이터를 보기 쉽게 제공합니다. 각인서, 재련 재료 등의 정보를 확인하세요.',
     url: 'https://lostark-auction.vercel.app',
-    siteName: '로아 시세',
+    siteName: '로아시세',
     images: [
       {
         url: 'https://lostark-auction.vercel.app/og.png',
         width: 1200,
         height: 630,
-        alt: '로아 시세 로고',
+        alt: '로아시세 로고',
       },
     ],
     locale: 'ko_KR',
@@ -62,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '로아 시세',
+    title: '로아시세',
     description:
       '로스트아크 시세 데이터를 보기 쉽게 제공합니다. 각인서, 재련 재료 등의 정보를 확인하세요.',
     images: ['https://lostark-auction.vercel.app/og.png'],

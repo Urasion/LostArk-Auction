@@ -46,7 +46,7 @@ export default function PcSidebar({ defaultOpen, children }: Props) {
             'group-data-[state-sidebar-open=true]:opacity-100 group-data-[state-sidebar-open=true]:duration-300 group-data-[state-sidebar-open=true]:delay-100',
           )}
         >
-          로아 시세
+          로아시세
         </Link>
       </div>
 

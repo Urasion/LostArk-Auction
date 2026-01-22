@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <div className="w-full h-12 flex items-center xl:hidden text-2xl px-4  relative">
       <Link href="/" className="text-2xl">
-        로아 시세
+        로아시세
       </Link>
       <MoblieSidebar>
         <RecipeLink isMobile={true} />
