@@ -7,7 +7,7 @@ export const ThemeScript = () => {
         if (parts.length === 2) {
           return parts.pop().split(";").shift();
         }
-        return 'light'; // 쿠키가 없으면 기본값
+        return 'dark'; // 쿠키가 없으면 기본값
       };
 
       const theme = getTheme();
