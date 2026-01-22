@@ -42,29 +42,23 @@ export const getArkgridGem = unstable_cache(
 );
 
 export async function getArkgridGemDetail(id: string) {
-
   const data = await apiClient<AuctionItemDetailResponse[]>(
-
     `/markets/items/${id}`,
-
     {
-
       method: 'GET',
-
       next: { revalidate: 600 },
-
     },
-
   );
-
   const sortedData = data.map((Item) => {
-
     Item.Stats.reverse();
-
     return Item;
-
+  });
+  const enrichedData = sortedData[1].Stats.map((item, index) => {
+    const prevItem = sortedData[1].Stats[index - 1];
+    const diffAvgPrice = prevItem ? item.AvgPrice - prevItem.AvgPrice : 0;
+    const diffTradeCount = prevItem ? item.TradeCount - prevItem.TradeCount : 0;
+    return { ...item, diffAvgPrice, diffTradeCount };
   });
 
-  return sortedData[1];
-
+  return { ...sortedData[1], Stats: enrichedData };
 }

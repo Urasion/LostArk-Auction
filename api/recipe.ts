@@ -54,8 +54,10 @@ export async function getRecipeDetail(id: string) {
   });
   const enrichedData = sortedData[1].Stats.map((item, index) => {
     const prevItem = sortedData[1].Stats[index - 1];
-    const diff = prevItem ? item.AvgPrice : item.AvgPrice;
-    return { ...item };
+    const diffAvgPrice = prevItem ? item.AvgPrice - prevItem.AvgPrice : 0;
+    const diffTradeCount = prevItem ? item.TradeCount - prevItem.TradeCount : 0;
+    return { ...item, diffAvgPrice, diffTradeCount };
   });
-  return sortedData[1];
+
+  return { ...sortedData[1], Stats: enrichedData };
 }

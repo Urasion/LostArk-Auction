@@ -32,4 +32,6 @@ export interface AuctionItemDetail {
   Date: string;
   AvgPrice: number;
   TradeCount: number;
+  diffAvgPrice: number;
+  diffTradeCount: number;
 }

@@ -43,25 +43,19 @@ export const AUCTION_DETAIL_COLUMNS = [
       );
     },
   }),
-  columnHelper.display({
-    id: 'YDayAvgPriceChangeRate',
-    cell: ({ row, table }) => {
-      const isPriceIncreasing =
-        (row.getValue('YDayAvgPrice') as number) <
-        (row.getValue('CurrentMinPrice') as number);
-      const priceDecrease =
-        (row.getValue('CurrentMinPrice') as number) -
-        (row.getValue('YDayAvgPrice') as number);
-      const current = row.getValue('CurrentMinPrice') as number;
-      const prev = row.getValue('YDayAvgPrice') as number;
-      if (!prev) return <Badge variant={'none'}>{'0.00%'}</Badge>;
-      const rawRate = ((current - prev) / prev) * 100;
+  columnHelper.accessor('diffAvgPrice', {
+    header: '',
+    cell: ({ row }) => {
+      const diffAvgPrice = row.getValue('diffAvgPrice') as number;
+      const avgPrice = row.getValue('AvgPrice') as number;
+      const isPriceIncreasing = diffAvgPrice > 0;
+      if (diffAvgPrice === 0) return <Badge variant={'none'}>{'0.00%'}</Badge>;
+      const rawRate = (diffAvgPrice / avgPrice) * 100;
       const formattedRate = '(' + +rawRate.toFixed(2) + '%' + ')';
-
       return (
         <Badge variant={isPriceIncreasing ? 'increase' : 'decrease'}>
           {isPriceIncreasing ? <ArrowUp /> : <ArrowDown />}
-          {priceDecrease.toFixed(1)}
+          {diffAvgPrice.toFixed(1)}
           <span className="text-[11px]"> {formattedRate}</span>
         </Badge>
       );
@@ -88,25 +82,20 @@ export const AUCTION_DETAIL_COLUMNS = [
       );
     },
   }),
-  columnHelper.display({
-    id: 'TradeCountChangeRate',
+  columnHelper.accessor('diffTradeCount', {
+    header: '',
     cell: ({ row }) => {
-      const isPriceIncreasing =
-        (row.getValue('YDayAvgPrice') as number) <
-        (row.getValue('CurrentMinPrice') as number);
-      const priceDecrease =
-        (row.getValue('CurrentMinPrice') as number) -
-        (row.getValue('YDayAvgPrice') as number);
-      const current = row.getValue('CurrentMinPrice') as number;
-      const prev = row.getValue('YDayAvgPrice') as number;
-      if (!prev) return <Badge variant={'none'}>{'0.00%'}</Badge>;
-      const rawRate = ((current - prev) / prev) * 100;
+      const diffTradeCount = row.getValue('diffTradeCount') as number;
+      const avgPrice = row.getValue('AvgPrice') as number;
+      const isPriceIncreasing = diffTradeCount > 0;
+      if (diffTradeCount === 0)
+        return <Badge variant={'none'}>{'0.00%'}</Badge>;
+      const rawRate = (diffTradeCount / avgPrice) * 100;
       const formattedRate = '(' + +rawRate.toFixed(2) + '%' + ')';
-
       return (
         <Badge variant={isPriceIncreasing ? 'increase' : 'decrease'}>
           {isPriceIncreasing ? <ArrowUp /> : <ArrowDown />}
-          {priceDecrease.toFixed(1)}
+          {diffTradeCount.toFixed(1)}
           <span className="text-[11px]"> {formattedRate}</span>
         </Badge>
       );
