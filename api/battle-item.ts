@@ -11,7 +11,7 @@ import { unstable_cache } from 'next/cache';
 async function fetchBattleItem(request: AuctionItemRequest) {
   let pageNo = 1;
   let isRunning = true;
-  const battle_items: AuctionItem[] = [];
+  const battleItems: AuctionItem[] = [];
   while (isRunning) {
     const data = await apiClient<AuctionItemResponse>('/markets/items', {
       method: 'POST',
@@ -28,11 +28,11 @@ async function fetchBattleItem(request: AuctionItemRequest) {
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
     }
-    battle_items.push(...data.Items);
+    battleItems.push(...data.Items);
     pageNo++;
     await delay(100);
   }
-  return battle_items;
+  return battleItems;
 }
 
 export const getBattleItems = unstable_cache(
@@ -49,9 +49,9 @@ export async function getBattleItemDetail(id: string) {
       next: { revalidate: 600 },
     },
   );
-  const sorted_data = data.map((Item) => {
+  const sortedData = data.map((Item) => {
     Item.Stats.reverse();
     return Item;
   });
-  return sorted_data[0];
+  return sortedData[0];
 }

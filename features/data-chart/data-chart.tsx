@@ -53,6 +53,13 @@ export function Chart<TData extends { Date: string }>({
       transition={{
         duration: 0.4,
         ease: 'easeOut',
+        type: 'spring',
+        stiffness: 100,
+        damping: 20,
+      }}
+      whileHover={{
+        y: -10,
+        transition: { duration: 0.2 },
       }}
       className="min-w-0"
     >

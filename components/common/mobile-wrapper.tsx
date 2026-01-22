@@ -1,10 +1,10 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
-const wrapper_list = ['/gem', '/upgrade', '/recipe', '/battle-items'];
+const wrapperList = ['/gem', '/upgrade', '/recipe', '/battle-items'];
 export default function MobileWrapper({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const isMainPage = wrapper_list.includes(pathname);
+  const isMainPage = wrapperList.includes(pathname);
   const mobileClass = isMainPage ? 'flex' : 'hidden xl:flex';
   return (
     <div className={`${mobileClass} w-full xl:max-w-250 max-h-[90dvh]`}>

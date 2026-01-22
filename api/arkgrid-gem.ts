@@ -11,7 +11,7 @@ import { unstable_cache } from 'next/cache';
 async function fetchArkgridGem(request: AuctionItemRequest) {
   let pageNo = 1;
   let isRunning = true;
-  const arkgrid_gem: AuctionItem[] = [];
+  const arkgridGem: AuctionItem[] = [];
   while (isRunning) {
     const data = await apiClient<AuctionItemResponse>('/markets/items', {
       method: 'POST',
@@ -28,11 +28,11 @@ async function fetchArkgridGem(request: AuctionItemRequest) {
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
     }
-    arkgrid_gem.push(...data.Items);
+    arkgridGem.push(...data.Items);
     pageNo++;
     await delay(100);
   }
-  return arkgrid_gem;
+  return arkgridGem;
 }
 
 export const getArkgridGem = unstable_cache(
@@ -42,16 +42,29 @@ export const getArkgridGem = unstable_cache(
 );
 
 export async function getArkgridGemDetail(id: string) {
+
   const data = await apiClient<AuctionItemDetailResponse[]>(
+
     `/markets/items/${id}`,
+
     {
+
       method: 'GET',
+
       next: { revalidate: 600 },
+
     },
+
   );
-  const sorted_data = data.map((Item) => {
+
+  const sortedData = data.map((Item) => {
+
     Item.Stats.reverse();
+
     return Item;
+
   });
-  return sorted_data[1];
+
+  return sortedData[1];
+
 }

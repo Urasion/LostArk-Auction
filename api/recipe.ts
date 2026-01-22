@@ -11,7 +11,7 @@ import { unstable_cache } from 'next/cache';
 async function fetchRecipeList(request: AuctionItemRequest) {
   let pageNo = 1;
   let isRunning = true;
-  const recipe_list: AuctionItem[] = [];
+  const recipeList: AuctionItem[] = [];
   while (isRunning) {
     const data = await apiClient<AuctionItemResponse>('/markets/items', {
       method: 'POST',
@@ -28,11 +28,11 @@ async function fetchRecipeList(request: AuctionItemRequest) {
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
     }
-    recipe_list.push(...data.Items);
+    recipeList.push(...data.Items);
     pageNo++;
     await delay(100);
   }
-  return recipe_list;
+  return recipeList;
 }
 
 export const getRecipeList = unstable_cache(fetchRecipeList, ['recipe-list'], {
@@ -48,9 +48,14 @@ export async function getRecipeDetail(id: string) {
       next: { revalidate: 600 },
     },
   );
-  const sorted_data = data.map((Item) => {
+  const sortedData = data.map((Item) => {
     Item.Stats.reverse();
     return Item;
   });
-  return sorted_data[1];
+  const enrichedData = sortedData[1].Stats.map((item, index) => {
+    const prevItem = sortedData[1].Stats[index - 1];
+    const diff = prevItem ? item.AvgPrice : item.AvgPrice;
+    return { ...item };
+  });
+  return sortedData[1];
 }

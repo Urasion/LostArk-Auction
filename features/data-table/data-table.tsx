@@ -67,6 +67,10 @@ export function DataTable<TData>({
         stiffness: 100,
         damping: 20,
       }}
+      whileHover={{
+        y: -10,
+        transition: { duration: 0.2 },
+      }}
     >
       <Table className="w-full caption-bottom text-sm">
         <TableHeader className="w-full caption-bottom text-sm">
@@ -74,11 +78,7 @@ export function DataTable<TData>({
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead
-                    key={header.id}
-                    className="sticky top-0 z-10"
-                    style={{ width: `${header.getSize()}` }}
-                  >
+                  <TableHead key={header.id} className="sticky top-0 z-10">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
