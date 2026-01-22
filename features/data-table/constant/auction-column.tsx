@@ -2,7 +2,14 @@
 import { Badge } from '@/components/ui/badge';
 import { AuctionItem } from '@/store/auction';
 import { createColumnHelper } from '@tanstack/react-table';
-import { ArrowDown, ArrowUp } from 'lucide-react';
+import {
+  ArrowDown,
+  ArrowUp,
+  ArrowUpDown,
+  ChevronDown,
+  ChevronUp,
+  Triangle,
+} from 'lucide-react';
 import Image from 'next/image';
 
 const columnHelper = createColumnHelper<AuctionItem>();
@@ -46,7 +53,19 @@ export const AUCTION_COLUMNS = [
       />
     ),
   }),
-  columnHelper.accessor('Name', { header: '아이템명' }),
+  columnHelper.accessor('Name', {
+    header: ({ column }) => (
+      <div
+        className="flex justify-start items-center gap-x-2 text-left cursor-pointer select-none"
+        onClick={column.getToggleSortingHandler()}
+      >
+        아이템명
+        {column.getIsSorted() === 'asc' && <ChevronUp size={16} />}
+        {column.getIsSorted() === 'desc' && <ChevronDown size={16} />}
+        {!column.getIsSorted() && <ArrowUpDown size={16} />}
+      </div>
+    ),
+  }),
   columnHelper.accessor('Grade', {
     header: () => <div className="text-center">등급</div>,
     cell: ({ row }) => {
@@ -58,7 +77,17 @@ export const AUCTION_COLUMNS = [
     },
   }),
   columnHelper.accessor('CurrentMinPrice', {
-    header: () => <div className="text-right">현재 최저가</div>,
+    header: ({ column }) => (
+      <div
+        className="flex justify-end items-center gap-x-2 cursor-pointer select-none"
+        onClick={column.getToggleSortingHandler()}
+      >
+        현재 최저가
+        {column.getIsSorted() === 'asc' && <ChevronUp size={16} />}
+        {column.getIsSorted() === 'desc' && <ChevronDown size={16} />}
+        {!column.getIsSorted() && <ArrowUpDown size={16} />}
+      </div>
+    ),
     meta: { align: 'right' },
     cell: ({ row }) => {
       return (
@@ -94,7 +123,17 @@ export const AUCTION_COLUMNS = [
   }),
 
   columnHelper.accessor('YDayAvgPrice', {
-    header: () => <div className="text-right">전일 평군 거래가</div>,
+    header: ({ column }) => (
+      <div
+        className="flex justify-end items-center gap-x-2 cursor-pointer select-none"
+        onClick={column.getToggleSortingHandler()}
+      >
+        전일 평균 거래가
+        {column.getIsSorted() === 'asc' && <ChevronUp size={16} />}
+        {column.getIsSorted() === 'desc' && <ChevronDown size={16} />}
+        {!column.getIsSorted() && <ArrowUpDown size={16} />}
+      </div>
+    ),
     cell: ({ row }) => {
       return (
         <div className="text-right ">
@@ -104,7 +143,17 @@ export const AUCTION_COLUMNS = [
     },
   }),
   columnHelper.accessor('RecentPrice', {
-    header: () => <div className="text-right">최근 거래가</div>,
+    header: ({ column }) => (
+      <div
+        className="flex justify-end items-center gap-x-2 cursor-pointer select-none"
+        onClick={column.getToggleSortingHandler()}
+      >
+        최근 거래가
+        {column.getIsSorted() === 'asc' && <ChevronUp size={16} />}
+        {column.getIsSorted() === 'desc' && <ChevronDown size={16} />}
+        {!column.getIsSorted() && <ArrowUpDown size={16} />}
+      </div>
+    ),
     cell: ({ row }) => {
       return (
         <div className="text-right ">
