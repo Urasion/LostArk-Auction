@@ -36,7 +36,10 @@ interface ChartProps<TData extends { Date: string }> {
   chartTitle: string;
   chartDescription: string;
   chartData: TData[];
-  chartConfig: Record<keyof Omit<TData, 'Date'>, config>;
+  chartConfig: Record<
+    keyof Omit<TData, 'Date' | 'diffAvgPrice' | 'diffTradeCount'>,
+    config
+  >;
 }
 export function Chart<TData extends { Date: string }>({
   chartTitle,
