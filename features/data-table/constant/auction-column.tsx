@@ -8,7 +8,6 @@ import {
   ArrowUpDown,
   ChevronDown,
   ChevronUp,
-  Triangle,
 } from 'lucide-react';
 import Image from 'next/image';
 
