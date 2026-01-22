@@ -62,10 +62,6 @@ export function DataTable<TData>({
       animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: 0.4,
-        ease: 'easeOut',
-        type: 'spring',
-        stiffness: 100,
-        damping: 20,
       }}
       whileHover={{
         y: -10,
