@@ -6,6 +6,7 @@ import MoblieSidebar from './mobile-sidebar';
 import PcSidebar from './pc-sidebar';
 import { cookies } from 'next/headers';
 import BattleItemLink from '../components/battle-item-link';
+import ResourceLink from '../components/resource-link';
 
 export default async function Sidebar() {
   const cookieStore = await cookies();
@@ -19,6 +20,7 @@ export default async function Sidebar() {
         <BattleItemLink />
         <UpgradeMaterialsLink />
         <GemLink />
+        <ResourceLink />
       </PcSidebar>
     </>
   );

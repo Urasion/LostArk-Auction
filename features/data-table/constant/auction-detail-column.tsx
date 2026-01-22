@@ -86,11 +86,11 @@ export const AUCTION_DETAIL_COLUMNS = [
     header: '',
     cell: ({ row }) => {
       const diffTradeCount = row.getValue('diffTradeCount') as number;
-      const avgPrice = row.getValue('AvgPrice') as number;
+      const tradeCount = row.getValue('TradeCount') as number;
       const isPriceIncreasing = diffTradeCount > 0;
       if (diffTradeCount === 0)
         return <Badge variant={'none'}>{'0.00%'}</Badge>;
-      const rawRate = (diffTradeCount / avgPrice) * 100;
+      const rawRate = (diffTradeCount / tradeCount) * 100;
       const formattedRate = '(' + +rawRate.toFixed(2) + '%' + ')';
       return (
         <Badge variant={isPriceIncreasing ? 'increase' : 'decrease'}>

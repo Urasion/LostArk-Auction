@@ -4,6 +4,7 @@ import RecipeLink from '../sidebar/components/recipe-link';
 import UpgradeMaterialsLink from '../sidebar/components/upgrade-materials-link';
 import GemLink from '../sidebar/components/gem-link';
 import BattleItemLink from '../sidebar/components/battle-item-link';
+import ResourceLink from '../sidebar/components/resource-link';
 
 export default function Header() {
   return (
@@ -16,6 +17,7 @@ export default function Header() {
         <BattleItemLink isMobile={true} />
         <UpgradeMaterialsLink isMobile={true} />
         <GemLink isMobile={true} />
+        <ResourceLink isMobile={true} />
       </MoblieSidebar>
     </div>
   );
