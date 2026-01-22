@@ -4,7 +4,7 @@ import { atom, useAtom } from 'jotai';
 import { useEffect, useLayoutEffect } from 'react';
 import Cookies from 'js-cookie';
 
-const themeAtom = atom<'light' | 'dark'>('light');
+const themeAtom = atom<'light' | 'dark'>('dark');
 
 export default function useToggle() {
   const [theme, setTheme] = useAtom(themeAtom);

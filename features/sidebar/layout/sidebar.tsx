@@ -9,7 +9,7 @@ import BattleItemLink from '../components/battle-item-link';
 
 export default async function Sidebar() {
   const cookieStore = await cookies();
-  const pcDefaultOpen = cookieStore.get('pc-sidebar')?.value === 'true';
+  const pcDefaultOpen = cookieStore.get('pc-sidebar')?.value !== 'false';
 
   return (
     <>
