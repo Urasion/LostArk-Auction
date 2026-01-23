@@ -29,7 +29,13 @@ export default function DataTableFavoriteCell({ row }: Props) {
       onClick={handleToggle}
       whileTap={{ scale: 0.95 }}
     >
-      <Heart size={18} className={cn(isFavorite && 'stroke-rose-300')} />
+      <Heart
+        size={18}
+        className={cn(
+          'fill-gray-300 dark:fill-gray-300/15 stroke-0',
+          isFavorite && 'fill-red-500 dark:fill-red-600',
+        )}
+      />
     </motion.button>
   );
 }
