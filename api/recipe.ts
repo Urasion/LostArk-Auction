@@ -36,7 +36,7 @@ async function fetchRecipeList(request: AuctionItemRequest) {
 }
 
 export const getRecipeList = unstable_cache(fetchRecipeList, ['recipe-list'], {
-  revalidate: 300,
+  revalidate: 60,
   tags: ['recipes'],
 });
 

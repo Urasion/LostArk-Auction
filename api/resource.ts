@@ -36,7 +36,7 @@ async function fetchResources(request: AuctionItemRequest) {
 }
 
 export const getResources = unstable_cache(fetchResources, ['resource-list'], {
-  revalidate: 300,
+  revalidate: 60,
   tags: ['resources'],
 });
 

@@ -38,7 +38,7 @@ async function fetchUpgradeMaterials(request: AuctionItemRequest) {
 export const getUpgradeMaterials = unstable_cache(
   fetchUpgradeMaterials,
   ['upgrade-materials-list'],
-  { revalidate: 300, tags: ['upgrade-materials'] },
+  { revalidate: 60, tags: ['upgrade-materials'] },
 );
 
 export async function getUpgradeMaterialsDetail(id: string) {

@@ -38,7 +38,7 @@ async function fetchBattleItem(request: AuctionItemRequest) {
 export const getBattleItems = unstable_cache(
   fetchBattleItem,
   ['battle-item-list'],
-  { revalidate: 300, tags: ['battle-items'] },
+  { revalidate: 60, tags: ['battle-items'] },
 );
 
 export async function getBattleItemDetail(id: string) {
