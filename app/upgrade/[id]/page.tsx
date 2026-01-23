@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
-import { DataTableSkeleton } from '@/features/data-table/data-table-skeleton';
+import { DataTableSkeleton } from '@/features/data-table/components/data-table-skeleton';
 import UpgradeMaterialsDetailChart from './components/UpgradeMaterialsDetailChart';
 import UpgradeMaterialsDetailTable from './components/UpgradeMaterialsDetailTable';
 import { AUCTION_DETAIL_SKELETON_COLUMNS } from '@/features/data-table/constant/auction-skeleton';

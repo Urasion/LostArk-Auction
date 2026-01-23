@@ -1,6 +1,6 @@
 'use client';
 import { AUCTION_COLUMNS } from '@/features/data-table/constant/auction-column';
-import { DataTable } from '@/features/data-table/data-table';
+import { DataTable } from '@/features/data-table/components/data-table';
 import { AuctionItem } from '@/store/auction';
 import { useRouter } from 'next/navigation';
 
