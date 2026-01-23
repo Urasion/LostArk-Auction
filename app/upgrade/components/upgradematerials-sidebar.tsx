@@ -1,5 +1,5 @@
 import { getUpgradeMaterials } from '@/api/upgrade-materials';
-import UpgradeMaterialsTable from './UpgradeMaterialsTable';
+import UpgradeMaterialsTable from './upgradematerials-table';
 
 export default async function UpgradeMaterialsSidebar() {
   const upgradeMaterials = await getUpgradeMaterials({

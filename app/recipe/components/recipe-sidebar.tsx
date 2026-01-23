@@ -1,5 +1,5 @@
 import { getRecipeList } from '@/api/recipe';
-import RecipeTable from './RecipeTable';
+import RecipeTable from './recipe-table';
 
 export default async function RecipeSidebar() {
   const recipes = await getRecipeList({

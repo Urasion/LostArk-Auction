@@ -1,5 +1,5 @@
 import { getBattleItems } from '@/api/battle-item';
-import BattleItemTable from './BattleItemTable';
+import BattleItemTable from './battleitem-table';
 
 export default async function BattleItemSidebar() {
   const battleItems = await getBattleItems({

@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
-import BattleItemDetailChart from './components/BattleItemDetailChart';
+import BattleItemDetailChart from './components/battleitem-detail-chart';
 import { Skeleton } from '@/components/ui/skeleton';
-import BattleItemDetailTable from './components/BattleItemDetailTable';
+import BattleItemDetailTable from './components/battleitem-detail-table';
 import { DataTableSkeleton } from '@/features/data-table/components/data-table-skeleton';
 import { AUCTION_DETAIL_SKELETON_COLUMNS } from '@/features/data-table/constant/auction-skeleton';
 

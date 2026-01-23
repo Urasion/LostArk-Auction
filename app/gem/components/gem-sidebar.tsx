@@ -1,5 +1,5 @@
 import { getArkgridGem } from '@/api/arkgrid-gem';
-import GemTable from './GemTable';
+import GemTable from './gem-table';
 
 export default async function GemSidebar() {
   const gems = await getArkgridGem({
