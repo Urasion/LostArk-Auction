@@ -10,36 +10,13 @@ import {
   ChevronUp,
 } from 'lucide-react';
 import Image from 'next/image';
+import DataTableFavoriteCell from '../components/data-table-favorite-cell';
 
 const columnHelper = createColumnHelper<AuctionItem>();
 export const AUCTION_COLUMNS = [
-  /* columnHelper.display({
-    id: 'select', // 식별자 필수
-
-    header: ({ table }) => (
-      <Checkbox
-        className="mx-2"
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && 'indeterminate')
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        className="mx-2"
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  }), */
   columnHelper.accessor('Id', {
-    header: 'ID',
+    header: '',
+    cell: ({ row }) => <DataTableFavoriteCell row={row} />,
   }),
   columnHelper.accessor('Icon', {
     header: '',
@@ -52,6 +29,7 @@ export const AUCTION_COLUMNS = [
       />
     ),
   }),
+
   columnHelper.accessor('Name', {
     header: ({ column }) => (
       <div

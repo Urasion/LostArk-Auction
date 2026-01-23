@@ -45,11 +45,6 @@ export function DataTable<TData>({
     state: {
       sorting,
     },
-    initialState: {
-      columnVisibility: {
-        Id: false,
-      },
-    },
   });
   return (
     <motion.div
