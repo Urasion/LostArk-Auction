@@ -9,7 +9,6 @@ export default function useFavorite(itemId: number) {
   const isFavorite = favorites.some((item) => item.Id === itemId);
 
   const toggleFavorite = (itemToAdd?: AuctionItem) => {
-    console.log(itemToAdd);
     if (isFavorite) {
       setFavorites((prev) => prev.filter((item) => item.Id !== itemId));
     } else {
@@ -18,8 +17,6 @@ export default function useFavorite(itemId: number) {
       }
     }
   };
-
-  console.log(favorites);
 
   return { isFavorite, toggleFavorite };
 }

@@ -56,10 +56,6 @@ export function Chart<TData extends { Date: string }>({
       transition={{
         duration: 0.4,
       }}
-      whileHover={{
-        y: -10,
-        transition: { duration: 0.2 },
-      }}
       className="min-w-0"
     >
       <Card className="w-full h-full ">
