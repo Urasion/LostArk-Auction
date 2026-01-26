@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 
 const atom = atomWithStorage<AuctionItem[]>('loatark-auction-favorites', []);
-export default function useFavorite(itemId: number) {
+export default function useFavorite(itemId?: number) {
   const [favorites, setFavorites] = useAtom(atom);
 
   const isFavorite = favorites.some((item) => item.Id === itemId);
@@ -18,5 +18,9 @@ export default function useFavorite(itemId: number) {
     }
   };
 
-  return { isFavorite, toggleFavorite };
+  const getFavorites = () => {
+    return favorites;
+  };
+
+  return { isFavorite, toggleFavorite, getFavorites };
 }
