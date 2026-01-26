@@ -46,7 +46,7 @@ export async function getUpgradeMaterialsDetail(id: string) {
     `/markets/items/${id}`,
     {
       method: 'GET',
-      next: { revalidate: 600 },
+      next: { revalidate: 300 },
     },
   );
   const sortedData = data.map((Item) => {
