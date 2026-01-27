@@ -1,3 +1,5 @@
+import { ROUTE_LIST } from './route';
+
 export interface FavoriteItem {
   Id: number;
   Name: string;
@@ -7,5 +9,6 @@ export interface FavoriteItem {
   CurrentPrice: number;
   Stock: number;
   ReturnAmount: number;
-  returnRate: number;
+  ReturnRate: number;
+  Type: (typeof ROUTE_LIST)[number];
 }
