@@ -2,6 +2,7 @@ import { apiClient } from '@/lib/apiClient';
 import {
   AuctionItem,
   AuctionItemDetailResponse,
+  AuctionItemDetailResponseDTO,
   AuctionItemRequest,
   AuctionItemResponse,
 } from '@/store/auction';
@@ -11,7 +12,7 @@ import { unstable_cache } from 'next/cache';
 async function fetchResources(request: AuctionItemRequest) {
   let pageNo = 1;
   let isRunning = true;
-  const battleItems: AuctionItem[] = [];
+  const resources: AuctionItem[] = [];
   while (isRunning) {
     const data = await apiClient<AuctionItemResponse>('/markets/items', {
       method: 'POST',
@@ -28,11 +29,13 @@ async function fetchResources(request: AuctionItemRequest) {
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
     }
-    battleItems.push(...data.Items);
+    resources.push(
+      ...data.Items.map((item) => ({ ...item, Type: '/resource' as const })),
+    );
     pageNo++;
     await delay(100);
   }
-  return battleItems;
+  return resources;
 }
 
 export const getResources = unstable_cache(fetchResources, ['resource-list'], {
@@ -40,8 +43,10 @@ export const getResources = unstable_cache(fetchResources, ['resource-list'], {
   tags: ['resources'],
 });
 
-export async function getResourceDetail(id: string) {
-  const data = await apiClient<AuctionItemDetailResponse[]>(
+export async function getResourceDetail(
+  id: string,
+): Promise<AuctionItemDetailResponse> {
+  const data = await apiClient<AuctionItemDetailResponseDTO[]>(
     `/markets/items/${id}`,
     {
       method: 'GET',
@@ -52,12 +57,12 @@ export async function getResourceDetail(id: string) {
     Item.Stats.reverse();
     return Item;
   });
-  const enrichedData = sortedData[0].Stats.map((item, index) => {
-    const prevItem = sortedData[0].Stats[index - 1];
+  const enrichedData = sortedData[1].Stats.map((item, index) => {
+    const prevItem = sortedData[1].Stats[index - 1];
     const diffAvgPrice = prevItem ? item.AvgPrice - prevItem.AvgPrice : 0;
     const diffTradeCount = prevItem ? item.TradeCount - prevItem.TradeCount : 0;
     return { ...item, diffAvgPrice, diffTradeCount };
   });
 
-  return { ...sortedData[0], Stats: enrichedData };
+  return { Name: sortedData[0].Name, Stats: enrichedData };
 }

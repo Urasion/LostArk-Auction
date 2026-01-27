@@ -2,6 +2,7 @@ import { apiClient } from '@/lib/apiClient';
 import {
   AuctionItem,
   AuctionItemDetailResponse,
+  AuctionItemDetailResponseDTO,
   AuctionItemRequest,
   AuctionItemResponse,
 } from '@/store/auction';
@@ -28,7 +29,9 @@ async function fetchRecipeList(request: AuctionItemRequest) {
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
     }
-    recipeList.push(...data.Items);
+    recipeList.push(
+      ...data.Items.map((item) => ({ ...item, Type: '/recipe' as const })),
+    );
     pageNo++;
     await delay(100);
   }
@@ -40,8 +43,10 @@ export const getRecipeList = unstable_cache(fetchRecipeList, ['recipe-list'], {
   tags: ['recipes'],
 });
 
-export async function getRecipeDetail(id: string) {
-  const data = await apiClient<AuctionItemDetailResponse[]>(
+export async function getRecipeDetail(
+  id: string,
+): Promise<AuctionItemDetailResponse> {
+  const data = await apiClient<AuctionItemDetailResponseDTO[]>(
     `/markets/items/${id}`,
     {
       method: 'GET',
@@ -59,5 +64,5 @@ export async function getRecipeDetail(id: string) {
     return { ...item, diffAvgPrice, diffTradeCount };
   });
 
-  return { ...sortedData[1], Stats: enrichedData };
+  return { Name: sortedData[1].Name, Stats: enrichedData };
 }

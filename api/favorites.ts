@@ -1,12 +1,15 @@
 import { appClient } from '@/lib/apiClient';
 import { AuctionItemDetail } from '@/store/auction';
+import { FavoriteItem } from '@/store/favorites';
 
 export default async function getFavoritesDetail(
-  itemIds: string[],
+  items: FavoriteItem[],
 ): Promise<AuctionItemDetail> {
   const data = await appClient<AuctionItemDetail>('/api/favorites', {
     method: 'POST',
-    body: JSON.stringify({ itemIds: itemIds }),
+    body: JSON.stringify(
+      items.map((item) => ({ itemId: String(item.Id), type: item.Type })),
+    ),
   });
   return data;
 }
