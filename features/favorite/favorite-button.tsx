@@ -28,11 +28,11 @@ export default function FavoriteButton() {
           즐겨찾기
         </MotionButton>
       </SheetTrigger>
-      <SheetContent className="min-w-fit px-4">
+      <SheetContent className="min-w-5xl px-4">
         <SheetHeader>
           <SheetTitle>즐겨찾기</SheetTitle>
           <SheetDescription>
-            즐겨찾기 추가 시점의 정보가 초기 설정값으로 저장됩니다.
+            즐겨찾기 추가 시점의 최저가가 기준가로 설정됩니다.
           </SheetDescription>
         </SheetHeader>
         <FavoriteList />

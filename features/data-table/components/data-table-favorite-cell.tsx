@@ -9,13 +9,13 @@ interface Props {
 }
 
 export default function DataTableFavoriteCell({ row }: Props) {
-  const { isFavorite, toggleFavorite } = useFavorite(row.getValue('Id'));
+  const { isFavorite, toggleFavorite } = useFavorite();
   const controls = useAnimation();
 
   const handleToggle = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleFavorite(row.original);
+    toggleFavorite(row.getValue('Id'), row.original);
     await controls.start({
       scale: [1, 1.4, 1],
       rotate: [-10, 10, -5, 5, 0],
@@ -33,7 +33,7 @@ export default function DataTableFavoriteCell({ row }: Props) {
         size={18}
         className={cn(
           'fill-gray-300 dark:fill-gray-300/15 stroke-0',
-          isFavorite && 'fill-red-500 dark:fill-red-600',
+          isFavorite(row.original.Id) && 'fill-red-500 dark:fill-red-600',
         )}
       />
     </motion.button>
