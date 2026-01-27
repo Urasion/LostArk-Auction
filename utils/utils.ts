@@ -20,9 +20,7 @@ export const convertAuctionItemToFavoriteItem = (
     Icon: item.Icon,
     BasePrice: item.CurrentMinPrice,
     CurrentPrice: 0,
-    Stock: 0,
-    ReturnAmount: 0,
-    ReturnRate: 0,
+    Stock: 1,
     Type: item.Type,
   };
 };
