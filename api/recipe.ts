@@ -64,5 +64,5 @@ export async function getRecipeDetail(
     return { ...item, diffAvgPrice, diffTradeCount };
   });
 
-  return { Name: sortedData[1].Name, Stats: enrichedData };
+  return { Name: sortedData[1].Name, Stats: enrichedData, Id: id };
 }

@@ -2,6 +2,7 @@ import { apiClient } from '@/lib/apiClient';
 import {
   AuctionItem,
   AuctionItemDetailResponse,
+  AuctionItemDetailResponseDTO,
   AuctionItemRequest,
   AuctionItemResponse,
 } from '@/store/auction';
@@ -28,7 +29,9 @@ async function fetchUpgradeMaterials(request: AuctionItemRequest) {
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
     }
-    upgradeMaterials.push(...data.Items);
+    upgradeMaterials.push(
+      ...data.Items.map((item) => ({ ...item, Type: '/upgrade' as const })),
+    );
     pageNo++;
     await delay(100);
   }
@@ -41,8 +44,10 @@ export const getUpgradeMaterials = unstable_cache(
   { revalidate: 300, tags: ['upgrade-materials'] },
 );
 
-export async function getUpgradeMaterialsDetail(id: string) {
-  const data = await apiClient<AuctionItemDetailResponse[]>(
+export async function getUpgradeMaterialsDetail(
+  id: string,
+): Promise<AuctionItemDetailResponse> {
+  const data = await apiClient<AuctionItemDetailResponseDTO[]>(
     `/markets/items/${id}`,
     {
       method: 'GET',
@@ -53,12 +58,12 @@ export async function getUpgradeMaterialsDetail(id: string) {
     Item.Stats.reverse();
     return Item;
   });
-  const enrichedData = sortedData[0].Stats.map((item, index) => {
-    const prevItem = sortedData[0].Stats[index - 1];
+  const enrichedData = sortedData[1].Stats.map((item, index) => {
+    const prevItem = sortedData[1].Stats[index - 1];
     const diffAvgPrice = prevItem ? item.AvgPrice - prevItem.AvgPrice : 0;
     const diffTradeCount = prevItem ? item.TradeCount - prevItem.TradeCount : 0;
     return { ...item, diffAvgPrice, diffTradeCount };
   });
 
-  return { ...sortedData[0], Stats: enrichedData };
+  return { Name: sortedData[0].Name, Stats: enrichedData, Id: id };
 }

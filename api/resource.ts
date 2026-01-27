@@ -64,5 +64,5 @@ export async function getResourceDetail(
     return { ...item, diffAvgPrice, diffTradeCount };
   });
 
-  return { Name: sortedData[0].Name, Stats: enrichedData };
+  return { Name: sortedData[0].Name, Stats: enrichedData, Id : id };
 }
