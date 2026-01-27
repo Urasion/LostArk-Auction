@@ -8,7 +8,5 @@ export interface FavoriteItem {
   BasePrice: number;
   CurrentPrice: number;
   Stock: number;
-  ReturnAmount: number;
-  ReturnRate: number;
   Type: (typeof ROUTE_LIST)[number];
 }

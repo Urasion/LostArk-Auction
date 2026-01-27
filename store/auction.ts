@@ -49,6 +49,7 @@ export interface AuctionItemDetailDTO {
 
 export interface AuctionItemDetailResponse {
   Name: string;
+  Id: string;
   Stats: AuctionItemDetail[];
 }
 export interface AuctionItemDetail extends AuctionItemDetailDTO {
