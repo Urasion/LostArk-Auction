@@ -17,7 +17,7 @@ export default function MoblieSidebar({ children }: Props) {
   return (
     <aside className="xl:hidden ml-auto">
       <Drawer direction="right" open={isOpen} onOpenChange={setIsOpen}>
-        <DrawerTrigger className="size-fit p-2 xl:hidden absolute right-2 top-0">
+        <DrawerTrigger className="size-fit p-2 xl:hidden">
           <Menu />
         </DrawerTrigger>
         <DrawerContent className="max-w-100 xl:hidden py-10 bg-sidebar-accent">
