@@ -34,7 +34,9 @@ export default function useFavorite() {
     value: FavoriteItem[K],
   ) => {
     setFavorites((prev) =>
-      prev.map((item) => (item.Id === itemId ? { ...item, key: value } : item)),
+      prev.map((item) =>
+        item.Id === itemId ? { ...item, [key]: value } : item,
+      ),
     );
   };
 
