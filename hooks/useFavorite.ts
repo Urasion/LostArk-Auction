@@ -2,11 +2,26 @@ import { convertAuctionItemToFavoriteItem } from './../utils/utils';
 import { AuctionItem } from '@/store/auction';
 import { FavoriteItem } from '@/store/favorites';
 import { useAtom } from 'jotai';
-import { atomWithStorage } from 'jotai/utils';
+import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 
-const atom = atomWithStorage<FavoriteItem[]>('loatark-auction-favorites', []);
+const storage = createJSONStorage<FavoriteItem[]>(() => {
+  if (typeof window === 'undefined') {
+    return {
+      getItem: () => null,
+      setItem: () => null,
+      removeItem: () => null,
+    };
+  }
+  return localStorage;
+});
+
+export const favoriteAtom = atomWithStorage<FavoriteItem[]>(
+  'loatark-auction-favorites',
+  [],
+  storage,
+);
 export default function useFavorite() {
-  const [favorites, setFavorites] = useAtom(atom);
+  const [favorites, setFavorites] = useAtom(favoriteAtom);
 
   const isFavorite = (itemId: number) =>
     favorites.some((item) => item.Id === itemId);
