@@ -19,7 +19,7 @@ const badgeVariants = cva(
           'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
         none: 'rounded-sm bg-gray-50 text-gray-600 dark:bg-gray-500/15 dark:text-gray-400 border-gray-500',
         decrease:
-          'rounded-sm bg-green-50 text-green-600 dark:bg-green-500/15 dark:text-green-400',
+          'rounded-sm bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-400',
         increase:
           'rounded-sm bg-red-50 text-red-600 border-red-500 dark:bg-red-500/15 dark:text-red-400 dark:border-red-500/30',
         고대: 'rounded-sm bg-[#8C6928]/10 text-[#8C6928] border-[#E3C7A1]/30 dark:bg-[#E3C7A1]/10 dark:text-[#E3C7A1] dark:border-[#E3C7A1]/20',
