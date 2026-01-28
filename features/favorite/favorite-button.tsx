@@ -26,6 +26,7 @@ export default function FavoriteButton() {
             duration: 0.4,
             delay: 0.5,
           }}
+          className="hidden xl:inline-flex"
         >
           즐겨찾기
         </MotionButton>
