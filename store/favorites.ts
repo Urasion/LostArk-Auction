@@ -10,3 +10,8 @@ export interface FavoriteItem {
   Stock: number;
   Type: (typeof ROUTE_LIST)[number];
 }
+
+export interface FavoriteItemResponse {
+  Id: number;
+  CurrentPrice: number;
+}

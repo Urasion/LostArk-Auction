@@ -1,16 +1,25 @@
 import { appClient } from '@/lib/apiClient';
-import { FavoriteItem } from '@/store/favorites';
-import { requestItemScheme } from '@/store/request_scheme';
+import { FavoriteItem, FavoriteItemResponse } from '@/store/favorites';
+import { favoriteRequestItemScheme } from '@/store/request_scheme';
 import { z } from 'zod';
 
 export default async function getFavoritesDetail(
   items: FavoriteItem[],
-): Promise<FavoriteItem[]> {
-  const favoriteList = await appClient<FavoriteItem[]>('/api/favorites', {
-    method: 'POST',
-    body: JSON.stringify(
-      items.map((item) => item as z.infer<typeof requestItemScheme>),
-    ),
-  });
+): Promise<FavoriteItemResponse[]> {
+  const favoriteList = await appClient<FavoriteItemResponse[]>(
+    '/api/favorites',
+    {
+      method: 'POST',
+      body: JSON.stringify(
+        items.map(
+          (item) =>
+            ({ Id: item.Id, Type: item.Type }) as z.infer<
+              typeof favoriteRequestItemScheme
+            >,
+        ),
+      ),
+    },
+  );
+  console.log(favoriteList);
   return favoriteList;
 }
