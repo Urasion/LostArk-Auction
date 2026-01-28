@@ -118,7 +118,12 @@ export const FAVORITE_COLUMN = [
         (row.getValue('CurrentPrice') as number);
       const current = row.getValue('CurrentPrice') as number;
       const prev = row.getValue('BasePrice') as number;
-      if (!prev) return '0.00%';
+      if (!current)
+        return (
+          <span className="flex justify-end items-center text-sm">
+            {'0.00%'}
+          </span>
+        );
       const rawRate = ((prev - current) / current) * 100;
       const formattedRate = +(+rawRate.toFixed(2)) + '%';
 
@@ -147,7 +152,10 @@ export const FAVORITE_COLUMN = [
         (row.getValue('CurrentPrice') as number) -
         (row.getValue('BasePrice') as number) *
           (row.getValue('Stock') as number);
-      if (!priceDecrease) return 0;
+      if (!priceDecrease)
+        return (
+          <span className="flex justify-end items-center text-sm">{0}</span>
+        );
       return (
         <span
           className={cn(
