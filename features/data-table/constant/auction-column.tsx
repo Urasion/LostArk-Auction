@@ -26,6 +26,7 @@ export const AUCTION_COLUMNS = [
         width={30}
         height={30}
         alt="아이템 이미지"
+        className="min-w-7.5"
       />
     ),
   }),

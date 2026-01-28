@@ -1,16 +1,19 @@
 import { Input } from '@/components/ui/input';
 import useFavorite from '@/hooks/useFavorite';
 import { FavoriteItem } from '@/store/favorites';
-import { Row } from '@tanstack/react-table';
-import { useState } from 'react';
+import { Column, Row, Table } from '@tanstack/react-table';
+
+import { useEffect, useState } from 'react';
 interface Props {
   row: Row<FavoriteItem>;
+  column: Column<FavoriteItem>;
+  table: Table<FavoriteItem>;
   field: keyof FavoriteItem;
 }
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const MotionInput = motion(Input);
-export const EditableCell = ({ row, field }: Props) => {
+export const EditableCell = ({ row, column, table, field }: Props) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const { updateFavoriteBasicPrice } = useFavorite();
 
@@ -19,7 +22,9 @@ export const EditableCell = ({ row, field }: Props) => {
   );
   const handleOnBlur = () => {
     setIsEditing(false);
-    updateFavoriteBasicPrice(row.original.Id, field, value);
+    if (row.original[field] !== value) {
+      updateFavoriteBasicPrice(row.original.Id, field, value);
+    }
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +40,7 @@ export const EditableCell = ({ row, field }: Props) => {
     }
   };
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <>
       {isEditing ? (
         <MotionInput
           key="editing"
@@ -45,24 +50,16 @@ export const EditableCell = ({ row, field }: Props) => {
           onKeyDown={handleOnKeyDown}
           autoFocus
           className="text-right h-8"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.15, ease: 'easeOut' }}
         />
       ) : (
         <motion.div
           key="view"
           className="text-right w-full cursor-text p-2 rounded hover:bg-muted/50 transition-colors"
           onDoubleClick={() => setIsEditing(true)}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0, position: 'absolute' }}
-          transition={{ duration: 0.15 }}
         >
           {value}
         </motion.div>
       )}
-    </AnimatePresence>
+    </>
   );
 };
