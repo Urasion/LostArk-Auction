@@ -5,18 +5,21 @@ import { ArrowUpDown, ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 import { FavoriteItem } from '@/store/favorites';
 import { EditableCell } from '../components/editable-cell';
+import { cn } from '@/lib/utils';
 
 const columnHelper = createColumnHelper<FavoriteItem>();
 export const FAVORITE_COLUMN = [
   columnHelper.accessor('Icon', {
     header: '',
     cell: ({ row }) => (
-      <Image
-        src={row.getValue('Icon')}
-        width={30}
-        height={30}
-        alt="아이템 이미지"
-      />
+      <div className="flex justify-center items-center">
+        <Image
+          src={row.getValue('Icon')}
+          width={30}
+          height={30}
+          alt="아이템 이미지"
+        />
+      </div>
     ),
   }),
 
@@ -77,8 +80,10 @@ export const FAVORITE_COLUMN = [
       </div>
     ),
     meta: { align: 'right' },
-    cell: ({ row }) => {
-      return <EditableCell row={row} field="Stock" />;
+    cell: ({ row, column, table }) => {
+      return (
+        <EditableCell row={row} column={column} table={table} field="Stock" />
+      );
     },
   }),
   columnHelper.accessor('BasePrice', {
@@ -93,8 +98,68 @@ export const FAVORITE_COLUMN = [
         {!column.getIsSorted() && <ArrowUpDown size={16} />}
       </div>
     ),
+    cell: ({ row, column, table }) => {
+      return (
+        <EditableCell
+          row={row}
+          column={column}
+          table={table}
+          field="BasePrice"
+        />
+      );
+    },
+  }),
+  columnHelper.display({
+    id: 'ReturnRate',
+    header: () => <div className="text-right min-w-10">손익률</div>,
     cell: ({ row }) => {
-      return <EditableCell row={row} field="BasePrice" />;
+      const isPriceIncreasing =
+        (row.getValue('BasePrice') as number) <
+        (row.getValue('CurrentPrice') as number);
+      const current = row.getValue('CurrentPrice') as number;
+      const prev = row.getValue('BasePrice') as number;
+      if (!prev) return '0.00%';
+      const rawRate = ((prev - current) / current) * 100;
+      const formattedRate = +(+rawRate.toFixed(2)) + '%';
+
+      return (
+        <span
+          className={cn(
+            'flex justify-end items-center text-sm',
+            isPriceIncreasing
+              ? 'text-red-600 dark:text-red-400'
+              : 'text-blue-600 dark:text-blue-400',
+          )}
+        >
+          {formattedRate}
+        </span>
+      );
+    },
+  }),
+  columnHelper.display({
+    id: 'ReturnPrice',
+    header: () => <div className="text-right min-w-10 pr-5">수익금</div>,
+    cell: ({ row }) => {
+      const isPriceIncreasing =
+        (row.getValue('BasePrice') as number) <
+        (row.getValue('CurrentPrice') as number);
+      const priceDecrease =
+        (row.getValue('CurrentPrice') as number) -
+        (row.getValue('BasePrice') as number) *
+          (row.getValue('Stock') as number);
+      if (!priceDecrease) return 0;
+      return (
+        <span
+          className={cn(
+            'flex justify-end items-center text-sm pr-5',
+            isPriceIncreasing
+              ? 'text-red-600 dark:text-red-400'
+              : 'text-blue-600 dark:text-blue-400',
+          )}
+        >
+          {priceDecrease.toFixed(0)}
+        </span>
+      );
     },
   }),
 ];
