@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
-import GemDetailChart from './components/GemDetailChart';
+import GemDetailChart from './components/gem-detail-chart';
 import { Skeleton } from '@/components/ui/skeleton';
-import GemDetailTable from './components/GemDetailTable';
-import { DataTableSkeleton } from '@/features/data-table/data-table-skeleton';
+import GemDetailTable from './components/gem-detail-table';
+import { DataTableSkeleton } from '@/features/data-table/components/data-table-skeleton';
 import { AUCTION_DETAIL_SKELETON_COLUMNS } from '@/features/data-table/constant/auction-skeleton';
 
 interface GemDetailPageProps {

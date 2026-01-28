@@ -2,6 +2,7 @@ import { apiClient } from '@/lib/apiClient';
 import {
   AuctionItem,
   AuctionItemDetailResponse,
+  AuctionItemDetailResponseDTO,
   AuctionItemRequest,
   AuctionItemResponse,
 } from '@/store/auction';
@@ -28,7 +29,9 @@ async function fetchArkgridGem(request: AuctionItemRequest) {
     if (!data.Items || data.Items.length === 0) {
       isRunning = false;
     }
-    arkgridGem.push(...data.Items);
+    arkgridGem.push(
+      ...data.Items.map((item) => ({ ...item, Type: '/gem' as const })),
+    );
     pageNo++;
     await delay(100);
   }
@@ -41,12 +44,14 @@ export const getArkgridGem = unstable_cache(
   { revalidate: 60, tags: ['gems'] },
 );
 
-export async function getArkgridGemDetail(id: string) {
-  const data = await apiClient<AuctionItemDetailResponse[]>(
+export async function getArkgridGemDetail(
+  id: string,
+): Promise<AuctionItemDetailResponse> {
+  const data = await apiClient<AuctionItemDetailResponseDTO[]>(
     `/markets/items/${id}`,
     {
       method: 'GET',
-      next: { revalidate: 600 },
+      next: { revalidate: 300 },
     },
   );
   const sortedData = data.map((Item) => {
@@ -60,5 +65,5 @@ export async function getArkgridGemDetail(id: string) {
     return { ...item, diffAvgPrice, diffTradeCount };
   });
 
-  return { ...sortedData[1], Stats: enrichedData };
+  return { Name: sortedData[1].Name, Stats: enrichedData, Id: id };
 }

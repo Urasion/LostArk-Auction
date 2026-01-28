@@ -45,27 +45,17 @@ export function DataTable<TData>({
     state: {
       sorting,
     },
-    initialState: {
-      columnVisibility: {
-        Id: false,
-      },
-    },
   });
-
   return (
     <motion.div
       className={cn(
-        'rounded-xl bg-card border relative overflow-y-auto w-full xl:max-h-full  scrollbar-hide',
+        'rounded-xl bg-card border relative overflow-y-auto w-full xl:max-h-full  scrollbar-hide ',
         className,
       )}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: 0.4,
-      }}
-      whileHover={{
-        y: -10,
-        transition: { duration: 0.2 },
       }}
     >
       <Table className="w-full caption-bottom text-sm">

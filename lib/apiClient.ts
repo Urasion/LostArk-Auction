@@ -7,7 +7,7 @@ interface ApiOptions extends RequestInit {
 
 export async function apiClient<TData>(
   path: string,
-  options: ApiOptions = {}
+  options: ApiOptions = {},
 ): Promise<TData> {
   const defaultHeaders: HeadersInit = {
     Authorization: `Bearer ${API_KEY}`,
@@ -28,6 +28,30 @@ export async function apiClient<TData>(
 
   const response = await fetch(`${BASE_URL}${path}`, mergedOptions);
 
+  if (!response.ok) {
+    const errorBody = await response.json().catch(() => ({}));
+    console.error('API Error:', response.status, errorBody);
+    throw new Error(`API request failed with status ${response.status}`);
+  }
+  return response.json();
+}
+
+export async function appClient<TData>(
+  path: string,
+  options: ApiOptions = {},
+): Promise<TData> {
+  const defaultHeaders: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
+  const mergedOptions: ApiOptions = {
+    cache: 'no-store',
+    ...options,
+    headers: {
+      ...defaultHeaders,
+      ...options.headers,
+    },
+  };
+  const response = await fetch(`${path}`, mergedOptions);
   if (!response.ok) {
     const errorBody = await response.json().catch(() => ({}));
     console.error('API Error:', response.status, errorBody);

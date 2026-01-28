@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
-import RecipeDetailChart from './components/RecipeDetailChart';
+import RecipeDetailChart from './components/recipe-detail-chart';
 import { Skeleton } from '@/components/ui/skeleton';
-import RecipeDetailTable from './components/RecipeDetailTable';
-import { DataTableSkeleton } from '@/features/data-table/data-table-skeleton';
+import RecipeDetailTable from './components/recipe-detail-table';
+import { DataTableSkeleton } from '@/features/data-table/components/data-table-skeleton';
 import { AUCTION_DETAIL_SKELETON_COLUMNS } from '@/features/data-table/constant/auction-skeleton';
 
 interface RecipeDetailPageProps {

@@ -1,8 +1,8 @@
 import { ReactNode, Suspense } from 'react';
-import { DataTableSkeleton } from '@/features/data-table/data-table-skeleton';
+import { DataTableSkeleton } from '@/features/data-table/components/data-table-skeleton';
 import { AUCTION_SKELETON_COLUMNS } from '@/features/data-table/constant/auction-skeleton';
-import MobileWrapper from '@/components/common/mobile-wrapper';
-import BattleItemSidebar from './components/BattleItemSidebar';
+import MobileWrapper from '@/features/mobile-wrapper/mobile-wrapper';
+import BattleItemSidebar from './components/battleitem-sidebar';
 
 interface Props {
   children: ReactNode;
