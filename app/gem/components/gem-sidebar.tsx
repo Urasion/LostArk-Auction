@@ -1,5 +1,7 @@
 import { getArkgridGem } from '@/api/arkgrid-gem';
 import GemTable from './gem-table';
+import DataTableToolbar from '@/features/data-table/layout/data-table-toolbar';
+import FavoriteButton from '@/features/favorite/favorite-button';
 
 export default async function GemSidebar() {
   const gems = await getArkgridGem({
@@ -8,6 +10,9 @@ export default async function GemSidebar() {
   });
   return (
     <>
+      <DataTableToolbar>
+        <FavoriteButton />
+      </DataTableToolbar>
       <GemTable data={gems} />
     </>
   );
