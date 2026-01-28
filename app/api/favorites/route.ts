@@ -7,7 +7,6 @@ export async function POST(request: Request) {
   try {
     const json = await request.json();
     const items = favoriteRequestScheme.parse(json);
-    console.log(json);
     const responseList = await Promise.all(
       items.map((item) => routeDispatcher(item.Type)(String(item.Id))),
     );

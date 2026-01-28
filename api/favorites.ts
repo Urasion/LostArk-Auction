@@ -20,6 +20,5 @@ export default async function getFavoritesDetail(
       ),
     },
   );
-  console.log(favoriteList);
   return favoriteList;
 }
