@@ -58,8 +58,9 @@ export async function getUpgradeMaterialsDetail(
     Item.Stats.reverse();
     return Item;
   });
-  const enrichedData = sortedData[1].Stats.map((item, index) => {
-    const prevItem = sortedData[1].Stats[index - 1];
+  console.log(sortedData);
+  const enrichedData = sortedData[0].Stats.map((item, index) => {
+    const prevItem = sortedData[0].Stats[index - 1];
     const diffAvgPrice = prevItem ? item.AvgPrice - prevItem.AvgPrice : 0;
     const diffTradeCount = prevItem ? item.TradeCount - prevItem.TradeCount : 0;
     return { ...item, diffAvgPrice, diffTradeCount };

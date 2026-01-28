@@ -57,12 +57,12 @@ export async function getResourceDetail(
     Item.Stats.reverse();
     return Item;
   });
-  const enrichedData = sortedData[1].Stats.map((item, index) => {
-    const prevItem = sortedData[1].Stats[index - 1];
+  const enrichedData = sortedData[0].Stats.map((item, index) => {
+    const prevItem = sortedData[0].Stats[index - 1];
     const diffAvgPrice = prevItem ? item.AvgPrice - prevItem.AvgPrice : 0;
     const diffTradeCount = prevItem ? item.TradeCount - prevItem.TradeCount : 0;
     return { ...item, diffAvgPrice, diffTradeCount };
   });
 
-  return { Name: sortedData[0].Name, Stats: enrichedData, Id : id };
+  return { Name: sortedData[0].Name, Stats: enrichedData, Id: id };
 }
