@@ -7,12 +7,14 @@ import getFavoritesDetail from '@/services/favorites';
 import { FAVORITE_COLUMN } from '../data-table/constant/favorite-column';
 import { FavoriteItem, FavoriteItemResponse } from '@/store/favorites';
 import { useMemo } from 'react';
+import { DataTableSkeleton } from '../data-table/components/data-table-skeleton';
+import { FAVORITE_SKELETON_COLUMNS } from '../data-table/constant/auction-skeleton';
 
 export default function FavoriteList() {
   const { getFavorites } = useFavorite();
   const favorites = getFavorites();
 
-  const { data: currentPrices = [] } = useQuery({
+  const { data: currentPrices = [], isLoading } = useQuery({
     queryKey: ['favorites', favorites.map((item) => item.Id)],
     queryFn: (): Promise<FavoriteItemResponse[]> =>
       getFavoritesDetail(favorites),
@@ -26,6 +28,12 @@ export default function FavoriteList() {
       return { ...item, ...(findItem || {}) };
     });
   }, [favorites, currentPrices]);
+
+  if (isLoading) {
+    return (
+      <DataTableSkeleton columns={FAVORITE_SKELETON_COLUMNS} rowCount={10} />
+    );
+  }
 
   return <DataTable data={data} columns={FAVORITE_COLUMN} />;
 }
