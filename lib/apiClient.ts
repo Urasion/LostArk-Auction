@@ -17,7 +17,6 @@ export async function apiClient<TData>(
   const isISR = options.next?.revalidate !== undefined;
   const defaultCache: RequestCache = isISR ? 'force-cache' : 'no-store';
   const mergedOptions: ApiOptions = {
-    // 기본값
     cache: defaultCache,
     ...options,
     headers: {
@@ -44,7 +43,7 @@ export async function appClient<TData>(
     'Content-Type': 'application/json',
   };
   const mergedOptions: ApiOptions = {
-    cache: 'no-store',
+    cache: 'no-cache',
     ...options,
     headers: {
       ...defaultHeaders,
