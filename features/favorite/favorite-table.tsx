@@ -18,11 +18,12 @@ export default function FavoriteList() {
       getFavoritesDetail(favorites),
   });
   const data = useMemo<FavoriteItem[]>(() => {
-    return favorites.flatMap((item, index) => {
-      if (!currentPrices.at(index)) {
-        return [];
-      }
-      return { ...item, ...currentPrices.at(index) };
+    if (currentPrices.length === 0) {
+      return favorites;
+    }
+    return favorites.flatMap((item) => {
+      const findItem = currentPrices.find((price) => price.Id === item.Id);
+      return { ...item, ...(findItem || {}) };
     });
   }, [favorites, currentPrices]);
 
