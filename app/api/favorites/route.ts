@@ -1,4 +1,4 @@
-// 📁 app/api/favorites/route.ts
+export const dynamic = 'force-dynamic';
 import { favoriteRequestScheme } from '@/store/request_scheme';
 import { routeDispatcher } from '@/utils/utils';
 import { NextResponse } from 'next/server';
