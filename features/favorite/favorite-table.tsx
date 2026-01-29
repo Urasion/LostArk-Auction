@@ -3,7 +3,7 @@
 import useFavorite from '@/hooks/useFavorite';
 import { DataTable } from '../data-table/components/data-table';
 import { useQuery } from '@tanstack/react-query';
-import getFavoritesDetail from '@/api/favorites';
+import getFavoritesDetail from '@/services/favorites';
 import { FAVORITE_COLUMN } from '../data-table/constant/favorite-column';
 import { FavoriteItem, FavoriteItemResponse } from '@/store/favorites';
 import { useMemo } from 'react';

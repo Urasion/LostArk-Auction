@@ -1,4 +1,4 @@
-import { getRecipeDetail } from '@/api/recipe';
+import { getRecipeDetail } from '@/services/recipe';
 import { ChartConfig } from '@/components/ui/chart';
 import { Chart } from '@/features/data-chart/data-chart';
 

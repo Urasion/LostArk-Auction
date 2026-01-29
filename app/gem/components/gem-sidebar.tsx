@@ -1,4 +1,4 @@
-import { getArkgridGem } from '@/api/arkgrid-gem';
+import { getArkgridGem } from '@/services/arkgrid-gem';
 import GemTable from './gem-table';
 import DataTableToolbar from '@/features/data-table/layout/data-table-toolbar';
 import FavoriteButton from '@/features/favorite/favorite-button';

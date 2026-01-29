@@ -1,4 +1,4 @@
-import { getUpgradeMaterialsDetail } from '@/api/upgrade-materials';
+import { getUpgradeMaterialsDetail } from '@/services/upgrade-materials';
 import { ChartConfig } from '@/components/ui/chart';
 import { Chart } from '@/features/data-chart/data-chart';
 

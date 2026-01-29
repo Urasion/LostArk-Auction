@@ -1,4 +1,4 @@
-import { getUpgradeMaterials } from '@/api/upgrade-materials';
+import { getUpgradeMaterials } from '@/services/upgrade-materials';
 import UpgradeMaterialsTable from './upgradematerials-table';
 import DataTableToolbar from '@/features/data-table/layout/data-table-toolbar';
 import FavoriteButton from '@/features/favorite/favorite-button';

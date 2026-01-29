@@ -1,4 +1,4 @@
-import { getArkgridGemDetail } from '@/api/arkgrid-gem';
+import { getArkgridGemDetail } from '@/services/arkgrid-gem';
 import { AUCTION_DETAIL_COLUMNS } from '@/features/data-table/constant/auction-detail-column';
 import { DataTable } from '@/features/data-table/components/data-table';
 

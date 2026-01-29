@@ -1,8 +1,8 @@
-import { getArkgridGemDetail } from '@/api/arkgrid-gem';
-import { getBattleItemDetail } from '@/api/battle-item';
-import { getRecipeDetail } from '@/api/recipe';
-import { getResourceDetail } from '@/api/resource';
-import { getUpgradeMaterialsDetail } from '@/api/upgrade-materials';
+import { getArkgridGemDetail } from '@/services/arkgrid-gem';
+import { getBattleItemDetail } from '@/services/battle-item';
+import { getRecipeDetail } from '@/services/recipe';
+import { getResourceDetail } from '@/services/resource';
+import { getUpgradeMaterialsDetail } from '@/services/upgrade-materials';
 import { AuctionItem } from '@/store/auction';
 import { FavoriteItem } from '@/store/favorites';
 import { ROUTE_LIST } from '@/store/route';

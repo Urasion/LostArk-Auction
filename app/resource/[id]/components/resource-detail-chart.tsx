@@ -1,4 +1,4 @@
-import { getResourceDetail } from '@/api/resource';
+import { getResourceDetail } from '@/services/resource';
 import { ChartConfig } from '@/components/ui/chart';
 import { Chart } from '@/features/data-chart/data-chart';
 

@@ -1,4 +1,4 @@
-import { getBattleItemDetail } from '@/api/battle-item';
+import { getBattleItemDetail } from '@/services/battle-item';
 import { ChartConfig } from '@/components/ui/chart';
 import { Chart } from '@/features/data-chart/data-chart';
 

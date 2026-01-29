@@ -1,4 +1,4 @@
-import { getBattleItems } from '@/api/battle-item';
+import { getBattleItems } from '@/services/battle-item';
 import BattleItemTable from './battleitem-table';
 import DataTableToolbar from '@/features/data-table/layout/data-table-toolbar';
 import FavoriteButton from '@/features/favorite/favorite-button';

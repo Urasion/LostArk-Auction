@@ -1,4 +1,4 @@
-import { getArkgridGemDetail } from '@/api/arkgrid-gem';
+import { getArkgridGemDetail } from '@/services/arkgrid-gem';
 import { ChartConfig } from '@/components/ui/chart';
 import { Chart } from '@/features/data-chart/data-chart';
 

@@ -1,4 +1,4 @@
-import { getResources } from '@/api/resource';
+import { getResources } from '@/services/resource';
 import ResourceTable from './resource-table';
 import DataTableToolbar from '@/features/data-table/layout/data-table-toolbar';
 import FavoriteButton from '@/features/favorite/favorite-button';

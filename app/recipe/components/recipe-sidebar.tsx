@@ -1,4 +1,4 @@
-import { getRecipeList } from '@/api/recipe';
+import { getRecipeList } from '@/services/recipe';
 import RecipeTable from './recipe-table';
 import DataTableToolbar from '@/features/data-table/layout/data-table-toolbar';
 import FavoriteButton from '@/features/favorite/favorite-button';
