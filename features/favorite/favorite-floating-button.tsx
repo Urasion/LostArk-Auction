@@ -20,7 +20,7 @@ export default function FavoriteFloatingButton() {
           즐겨찾기
         </MotionButton>
       </DrawerTrigger>
-      <DrawerContent className="min-h-3xl px-5 pb-5">
+      <DrawerContent className="min-h-3/5 px-5 pb-5">
         <DrawerHeader>
           <DrawerTitle>즐겨찾기</DrawerTitle>
           <DrawerDescription>
