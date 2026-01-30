@@ -6,6 +6,7 @@ import { ReactNode, useState } from 'react';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import SettingButton from '../components/setting-button';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 type Props = {
   children: ReactNode;
@@ -13,8 +14,10 @@ type Props = {
 };
 
 export default function PcSidebar({ defaultOpen, children }: Props) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const isTablet = useMediaQuery('(max-width: 1760px)');
 
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const actualOpen = isOpen && isTablet ? false : isOpen;
   const handleOnChangeOpen = () => {
     setIsOpen((prev) => {
       Cookies.set('pc-sidebar', prev ? 'false' : 'true');
@@ -28,17 +31,20 @@ export default function PcSidebar({ defaultOpen, children }: Props) {
         'hidden h-screen sticky top-0 shrink-0 flex-col border-r bg-sidebar-accent pb-4 xl:flex transition-[width] duration-300 data-[state-sidebar-open=false]:w-14 group',
         'w-64',
       )}
-      data-state-sidebar-open={isOpen}
+      data-state-sidebar-open={actualOpen}
     >
       <div className="w-full flex justify-end items-center shrink-0 relative h-16 px-2 border-b">
-        <Button
-          size="icon-lg"
-          variant="ghost"
-          className="hover:bg-hover-background dark:hover:bg-hover-background p-2 z-10 "
-          onClick={handleOnChangeOpen}
-        >
-          <PanelLeft />
-        </Button>
+        {isTablet || (
+          <Button
+            size="icon-lg"
+            variant="ghost"
+            className="hover:bg-hover-background dark:hover:bg-hover-background p-2 z-10 "
+            onClick={handleOnChangeOpen}
+          >
+            <PanelLeft />
+          </Button>
+        )}
+
         <Link
           href={'/'}
           className={cn(
