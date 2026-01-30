@@ -8,6 +8,7 @@ import {
 import { cn } from '@/lib/utils';
 import { Settings } from 'lucide-react';
 import ThemeSwitch from './theme-switch';
+import { motion } from 'framer-motion';
 
 export default function SettingButton() {
   return (
@@ -15,17 +16,26 @@ export default function SettingButton() {
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
-          className="hidden h-9 rounded-md text-sm font-medium !px-2.5 py-2 xl:flex xl:w-full hover:bg-hover-background dark:hover:bg-hover-background group relative xl:justify-between xl:items-center duration-300"
+          className={cn(
+            'hidden h-9 rounded-md px-2.5 py-2 xl:flex xl:w-full gap-x-4 items-center xl:justify-start',
+            'text-sm font-medium hover:bg-hover-background! transition-colors duration-300',
+            'relative overflow-hidden',
+          )}
         >
           <Settings className="size-5 shrink-0" />
-          <p
-            className={cn(
-              'absolute top-1/2 -translate-y-1/2 left-1/5 whitespace-nowrap transition-opacity opacity-0 text-base',
-              'group-data-[state-sidebar-open=true]:opacity-100 group-data-[state-sidebar-open=true]:duration-300 group-data-[state-sidebar-open=true]:delay-100',
-            )}
+          <motion.p
+            animate={{
+              opacity: 'var(--sidebar-text-opacity)',
+              x: 'var(--sidebar-text-x)',
+            }}
+            transition={{
+              duration: 0.3,
+              delay: 0.1,
+            }}
+            className="whitespace-nowrap text-base"
           >
             환경설정
-          </p>
+          </motion.p>
         </Button>
       </PopoverTrigger>
       <PopoverContent

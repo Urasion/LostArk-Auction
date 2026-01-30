@@ -120,6 +120,17 @@
 }
 
 @layer base {
+  [data-state-sidebar-open='true'] {
+    --sidebar-text-opacity: 1;
+    --sidebar-text-x: 0px;
+    --sidebar-text-display: block;
+  }
+
+  [data-state-sidebar-open='false'] {
+    --sidebar-text-opacity: 0;
+    --sidebar-text-x: -20px;
+    --sidebar-text-display: none;
+  }
   * {
     @apply border-border outline-ring/50;
   }

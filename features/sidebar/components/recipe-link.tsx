@@ -3,6 +3,8 @@ import { cn } from '@/lib/utils';
 import { BookOpenText } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
+
 type Props = {
   isMobile?: boolean;
 };
@@ -25,20 +27,27 @@ export default function RecipeLink({ isMobile }: Props) {
       ) : (
         <Link
           className={cn(
-            'hidden h-9 rounded-md text-sm font-medium px-2.5 py-2 xl:flex xl:w-full hover:bg-hover-background group relative xl:justify-between xl:items-center duration-300',
+            'hidden h-9 rounded-md px-2.5 py-2 xl:flex xl:w-full gap-x-4 items-center',
+            'text-sm font-medium hover:bg-hover-background transition-colors duration-300',
             isCurrent && 'bg-hover-background',
+            'relative overflow-hidden',
           )}
           href={'/recipe'}
         >
           <BookOpenText className="size-5 shrink-0" />
-          <p
-            className={cn(
-              'absolute top-1/2 -translate-y-1/2 left-1/5 whitespace-nowrap transition-opacity opacity-0 text-base',
-              'group-data-[state-sidebar-open=true]:opacity-100 group-data-[state-sidebar-open=true]:duration-300 group-data-[state-sidebar-open=true]:delay-100',
-            )}
+          <motion.p
+            animate={{
+              opacity: 'var(--sidebar-text-opacity)',
+              x: 'var(--sidebar-text-x)',
+            }}
+            transition={{
+              duration: 0.3,
+              delay: 0.1,
+            }}
+            className="whitespace-nowrap text-base"
           >
             각인서
-          </p>
+          </motion.p>
         </Link>
       )}
     </>
