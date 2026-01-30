@@ -9,7 +9,9 @@ export default function MobileWrapper({ children }: { children: ReactNode }) {
     ? 'flex xl:flex-col'
     : 'hidden xl:flex xl:flex-col';
   return (
-    <div className={`${mobileClass} w-full xl:max-w-250 max-h-[90dvh]`}>
+    <div
+      className={`${mobileClass} w-full xl:max-w-250 max-h-[90dvh] xl:max-h-[95dvh]`}
+    >
       {children}
     </div>
   );
