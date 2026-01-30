@@ -1,19 +1,17 @@
 import { Input } from '@/components/ui/input';
 import useFavorite from '@/hooks/useFavorite';
-import { FavoriteItem } from '@/store/favorites';
-import { Column, Row, Table } from '@tanstack/react-table';
+import { FavoriteItem, priceScheme } from '@/store/favorites';
+import { Row } from '@tanstack/react-table';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 interface Props {
   row: Row<FavoriteItem>;
-  column: Column<FavoriteItem>;
-  table: Table<FavoriteItem>;
   field: keyof FavoriteItem;
 }
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const MotionInput = motion(Input);
-export const EditableCell = ({ row, column, table, field }: Props) => {
+export const EditableCell = ({ row, field }: Props) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const { updateFavoriteBasicPrice } = useFavorite();
 
@@ -28,9 +26,13 @@ export const EditableCell = ({ row, column, table, field }: Props) => {
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (value === '' || /^[0-9\b]+$/.test(value)) {
-      setValue(Number(value));
+    const inputValue = e.target.value;
+
+    if (inputValue === '' || /^\d+$/.test(inputValue)) {
+      const result = priceScheme.safeParse(Number(inputValue));
+      if (result.success) {
+        setValue(inputValue);
+      }
     }
   };
 
@@ -39,8 +41,10 @@ export const EditableCell = ({ row, column, table, field }: Props) => {
       handleOnBlur();
     }
   };
+
+  console.log(value);
   return (
-    <>
+    <div className="flex justify-end items-center">
       {isEditing ? (
         <MotionInput
           key="editing"
@@ -49,17 +53,23 @@ export const EditableCell = ({ row, column, table, field }: Props) => {
           onBlur={handleOnBlur}
           onKeyDown={handleOnKeyDown}
           autoFocus
-          className="text-right h-8"
+          className="flex max-w-30 text-right h-8 border-rose-300"
+          initial={{ flex: 0, opacity: 0 }}
+          animate={{ flex: 1, opacity: 1 }}
+          transition={{ duration: 0.4 }}
         />
       ) : (
         <motion.div
           key="view"
           className="text-right w-full cursor-text p-2 rounded hover:bg-muted/50 transition-colors"
           onDoubleClick={() => setIsEditing(true)}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
         >
-          {value}
+          {value.toLocaleString() || 0}
         </motion.div>
       )}
-    </>
+    </div>
   );
 };
