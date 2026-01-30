@@ -53,6 +53,6 @@ export interface AuctionItemDetailResponse {
   Stats: AuctionItemDetail[];
 }
 export interface AuctionItemDetail extends AuctionItemDetailDTO {
-  diffAvgPrice: number;
-  diffTradeCount: number;
+  prevAvgPrice: number;
+  prevTradeCount: number;
 }

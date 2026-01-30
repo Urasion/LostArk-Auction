@@ -55,14 +55,23 @@ export async function getArkgridGemDetail(
     },
   );
   const sortedData = data.map((Item) => {
-    Item.Stats.reverse();
-    return Item;
+    const reversedStats = [...Item.Stats].reverse();
+    return { ...Item, Stats: reversedStats };
   });
+
+  if (!sortedData[1]) {
+    throw new Error('데이터를 찾을 수 없습니다.');
+  }
   const enrichedData = sortedData[1].Stats.map((item, index) => {
     const prevItem = sortedData[1].Stats[index - 1];
-    const diffAvgPrice = prevItem ? item.AvgPrice - prevItem.AvgPrice : 0;
-    const diffTradeCount = prevItem ? item.TradeCount - prevItem.TradeCount : 0;
-    return { ...item, diffAvgPrice, diffTradeCount };
+    const prevAvgPrice = prevItem ? prevItem.AvgPrice : 0;
+    const prevTradeCount = prevItem ? prevItem.TradeCount : 0;
+
+    return {
+      ...item,
+      prevAvgPrice,
+      prevTradeCount,
+    };
   });
 
   return { Name: sortedData[1].Name, Stats: enrichedData, Id: id };

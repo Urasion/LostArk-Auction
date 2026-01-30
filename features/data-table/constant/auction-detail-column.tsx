@@ -37,26 +37,32 @@ export const AUCTION_DETAIL_COLUMNS = [
     cell: ({ row }) => {
       const avgPrice = (row.getValue('AvgPrice') as number).toFixed(1);
       return (
-        <div className="text-right ">
+        <div className="text-right">
           <span>{avgPrice}</span>
         </div>
       );
     },
   }),
-  columnHelper.accessor('diffAvgPrice', {
+
+  columnHelper.display({
+    id: 'priceChange',
     header: '',
     cell: ({ row }) => {
-      const diffAvgPrice = row.getValue('diffAvgPrice') as number;
-      const avgPrice = row.getValue('AvgPrice') as number;
-      const isPriceIncreasing = diffAvgPrice > 0;
-      if (diffAvgPrice === 0) return <Badge variant={'none'}>{'0.00%'}</Badge>;
-      const rawRate = (diffAvgPrice / avgPrice) * 100;
-      const formattedRate = '(' + +rawRate.toFixed(2) + '%' + ')';
+      const currentAvg = row.getValue('AvgPrice') as number;
+      const prevAvg = row.original.prevAvgPrice ?? 0;
+      const diff = currentAvg - prevAvg;
+
+      if (prevAvg <= 0) return <Badge variant="none">0.00%</Badge>;
+
+      const rate = (diff / prevAvg) * 100;
+      const isIncreasing = diff > 0;
+      const formattedRate = `(${Math.abs(rate).toFixed(2)}%)`;
+
       return (
-        <Badge variant={isPriceIncreasing ? 'increase' : 'decrease'}>
-          {isPriceIncreasing ? <ArrowUp /> : <ArrowDown />}
-          {diffAvgPrice.toFixed(1)}
-          <span className="text-[11px]"> {formattedRate}</span>
+        <Badge variant={isIncreasing ? 'increase' : 'decrease'}>
+          {isIncreasing ? <ArrowUp size={12} /> : <ArrowDown size={12} />}
+          {Math.abs(diff).toFixed(1)}
+          <span className="text-[11px] ml-1">{formattedRate}</span>
         </Badge>
       );
     },
@@ -74,29 +80,33 @@ export const AUCTION_DETAIL_COLUMNS = [
         {!column.getIsSorted() && <ArrowUpDown size={16} />}
       </div>
     ),
-    cell: ({ row }) => {
-      return (
-        <div className="text-right ">
-          <span>{row.getValue('TradeCount')}</span>
-        </div>
-      );
-    },
+    cell: ({ row }) => (
+      <div className="text-right">
+        <span>{row.getValue('TradeCount')}</span>
+      </div>
+    ),
   }),
-  columnHelper.accessor('diffTradeCount', {
+
+  columnHelper.display({
+    id: 'tradeCountChange',
     header: '',
     cell: ({ row }) => {
-      const diffTradeCount = row.getValue('diffTradeCount') as number;
-      const tradeCount = row.getValue('TradeCount') as number;
-      const isPriceIncreasing = diffTradeCount > 0;
-      if (diffTradeCount === 0)
-        return <Badge variant={'none'}>{'0.00%'}</Badge>;
-      const rawRate = (diffTradeCount / tradeCount) * 100;
-      const formattedRate = '(' + +rawRate.toFixed(2) + '%' + ')';
+      const currentTrade = row.getValue('TradeCount') as number;
+      const prevTrade = row.original.prevTradeCount ?? 0;
+      const diff = currentTrade - prevTrade;
+
+      if (prevTrade <= 0) return <Badge variant="none">0.00%</Badge>;
+
+      const rate = (diff / prevTrade) * 100;
+      const isIncreasing = diff > 0;
+
       return (
-        <Badge variant={isPriceIncreasing ? 'increase' : 'decrease'}>
-          {isPriceIncreasing ? <ArrowUp /> : <ArrowDown />}
-          {diffTradeCount.toFixed(1)}
-          <span className="text-[11px]"> {formattedRate}</span>
+        <Badge variant={isIncreasing ? 'increase' : 'decrease'}>
+          {isIncreasing ? <ArrowUp size={12} /> : <ArrowDown size={12} />}
+          {Math.abs(diff)}
+          <span className="text-[11px] ml-1">
+            ({Math.abs(rate).toFixed(2)}%)
+          </span>
         </Badge>
       );
     },
