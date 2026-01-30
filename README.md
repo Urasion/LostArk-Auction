@@ -1,88 +1,70 @@
-# 로아시세
+# Lostark Auction
 
-이 프로젝트는 Lost Ark 게임의 경매장 데이터를 추적하고 시각화하기 위해 Next.js로 구축된 웹 애플리케이션입니다. 보석, 재련 재료, 각인 레시피와 같은 다양한 게임 내 아이템에 대한 최신 가격 정보를 제공합니다.
+Lostark Auction은 로스트아크의 경매장 데이터를 시각화하고, 사용자가 즐겨찾는 아이템을 관리할 수 있도록 돕는 웹 애플리케이션입니다. Next.js와 TypeScript를 기반으로 구축되었으며, React Query를 활용한 캐싱 전략으로 효율적인 데이터 관리를 지향합니다.
 
 ## ✨ 주요 기능
 
-- **실시간 데이터:** 현재 경매장 가격을 가져와 표시합니다.
-- **데이터 시각화:** 시간 경과에 따른 가격 추세를 시각화하는 대화형 차트.
-- **카테고리별 아이템:** 보석, 재련 재료, 레시피와 같은 카테고리별로 아이템을 찾아볼 수 있습니다.
-- **반응형 디자인:** 데스크톱 및 모바일 장치 모두를 위한 완전 반응형 레이아웃.
-- **다크 모드:** 라이트 및 다크 테마 간 전환.
-- **컴포넌트 라이브러리:** 격리된 컴포넌트 개발 및 테스트를 위해 Storybook을 사용합니다.
+- **타입스크립트 기반의 안정적인 코드**: 모든 컴포넌트와 API 로직은 타입스크립트로 작성되어 코드의 안정성과 유지보수성을 높였습니다.
+- **API 요청 최적화를 위한 캐싱**: `React Query`를 적극적으로 사용하여 API 요청 횟수를 최소화하고, 사용자에게 빠르고 쾌적한 경험을 제공합니다. `stale-while-revalidate` 전략을 통해 데이터의 최신성을 유지하면서도 불필요한 네트워크 요청을 줄입니다.
+- **직관적인 데이터 시각화**: `Recharts`를 활용하여 경매장 아이템의 시세 변동을 차트로 시각화하여 보여줍니다.
+- **반응형 웹 디자인**: PC와 모바일 환경 모두에서 최적화된 UI를 제공합니다.
+- **즐겨찾기 기능**: 사용자가 관심 있는 아이템을 즐겨찾기에 추가하고, 한눈에 모아볼 수 있습니다.
 
-## 🛠️ 기술 스택
+## 🚀 기술 스택
 
-- **프레임워크:** [Next.js](https://nextjs.org/)
-- **언어:** [TypeScript](https://www.typescriptlang.org/)
-- **스타일링:** [Tailwind CSS](https://tailwindcss.com/)
-- **UI 컴포넌트:** [Shadcn/UI](https://ui.shadcn.com/)
-- **데이터 페칭:** [TanStack Query](https://tanstack.com/query)
-- **상태 관리:** [Jotai](https://jotai.org/)
-- **테이블:** [TanStack Table](https://tanstack.com/table)
-- **차트:** [Recharts](https://recharts.org/)
-- **린팅:** [ESLint](https://eslint.org/)
-- **테스팅:** [Vitest](https://vitest.dev/)
-- **컴포넌트 개발:** [Storybook](https://storybook.js.org/)
+- **프레임워크**: Next.js
+- **언어**: TypeScript
+- **상태 관리**: React Query, Zustand
+- **스타일링**: Tailwind CSS, shadcn/ui
+- **차트**: Recharts
+- **테스팅**: Vitest, Storybook
+- **API 클라이언트**:
+- **배포**: Vercel
 
-## 🚀 시작하기
+## 🏁 시작하기
 
-### 전제 조건
+### 1. 프로젝트 클론
 
-- Node.js (v20.x 이상 권장)
-- npm, yarn 또는 pnpm
+```bash
+git clone https://github.com/your-username/lostark-auction.git
+cd lostark-auction
+```
 
-### 설치 및 설정
+### 2. 의존성 설치
 
-1.  **리포지토리 복제:**
+```bash
+npm install
+```
 
-    ```bash
-    git clone https://github.com/your-username/lostark-auction.git
-    cd lostark-auction
-    ```
+### 3. 환경 변수 설정
 
-2.  **의존성 설치:**
+`.env.local` 파일을 생성하고, 필요한 환경 변수를 추가합니다.
 
-    ```bash
-    npm install
-    # 또는
-    yarn install
-    # 또는
-    pnpm install
-    ```
+```env
+NEXT_PUBLIC_API_URL=...
+```
 
-3.  **개발 서버 실행:**
-    ```bash
-    npm run dev
-    ```
+### 4. 개발 서버 실행
 
-브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 애플리케이션을 확인하세요.
+```bash
+npm run dev
+```
 
-## 📜 사용 가능한 스크립트
-
-- `npm run dev`: 개발 서버를 시작합니다.
-- `npm run build`: 프로덕션용 빌드를 생성합니다.
-- `npm run start`: 프로덕션 서버를 시작합니다.
-- `npm run lint`: ESLint 린터를 실행하여 코드 품질 문제를 확인합니다.
-- `npm run storybook`: 컴포넌트 개발을 위한 Storybook 서버를 시작합니다.
-- `npm run build-storybook`: 배포를 위한 Storybook을 빌드합니다.
+브라우저에서 `http://localhost:3000`으로 접속하여 애플리케이션을 확인할 수 있습니다.
 
 ## 📁 프로젝트 구조
 
 ```
-.
-├── app/                  # Next.js App Router 페이지
-│   ├── gem/              # 보석 관련 페이지
-│   ├── recipe/           # 레시피 관련 페이지
-│   └── upgrade/          # 재련 재료 관련 페이지
-├── components/           # 공유 UI 컴포넌트 (Shadcn/UI 사용)
-├── features/             # 기능별 컴포넌트 및 로직
-│   ├── data-chart/       # 재사용 가능한 차트 컴포넌트
-│   ├── data-table/       # 재사용 가능한 테이블 컴포넌트
-│   └── sidebar/          # 사이드바 레이아웃 및 컴포넌트
-├── lib/                  # 유틸리티 함수 및 API 클라이언트
-├── public/               # 정적 자산
-├── store/                # 전역 상태 관리 (Jotai)
-├── stories/              # Storybook 스토리
+/
+├── app/                  # Next.js App Router 기반의 페이지 및 API 라우트
+│   ├── api/              # API 라우트
+│   ├── (category)/       # 각 카테고리별 페이지
+│   └── ...
+├── components/           # 공통 UI 컴포넌트
+├── features/             # 특정 기능과 관련된 컴포넌트 및 로직
+├── hooks/                # 공통으로 사용되는 커스텀 훅
+├── lib/                  # API 클라이언트, 유틸리티 함수 등
+├── services/             # API 요청 로직
+├── store/                # Zustand를 사용한 전역 상태 관리
 └── ...
 ```
