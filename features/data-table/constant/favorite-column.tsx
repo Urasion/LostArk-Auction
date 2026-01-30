@@ -80,10 +80,8 @@ export const FAVORITE_COLUMN = [
       </div>
     ),
     meta: { align: 'right' },
-    cell: ({ row, column, table }) => {
-      return (
-        <EditableCell row={row} column={column} table={table} field="Stock" />
-      );
+    cell: ({ row }) => {
+      return <EditableCell row={row} field="Stock" />;
     },
   }),
   columnHelper.accessor('BasePrice', {
@@ -98,15 +96,8 @@ export const FAVORITE_COLUMN = [
         {!column.getIsSorted() && <ArrowUpDown size={16} />}
       </div>
     ),
-    cell: ({ row, column, table }) => {
-      return (
-        <EditableCell
-          row={row}
-          column={column}
-          table={table}
-          field="BasePrice"
-        />
-      );
+    cell: ({ row }) => {
+      return <EditableCell row={row} field="BasePrice" />;
     },
   }),
   columnHelper.display({
@@ -147,16 +138,20 @@ export const FAVORITE_COLUMN = [
     id: 'ReturnPrice',
     header: () => <div className="text-right min-w-10 pr-5">수익금</div>,
     cell: ({ row }) => {
-      const isPriceIncreasing =
-        (row.getValue('BasePrice') as number) <
-        (row.getValue('CurrentPrice') as number);
-      const priceDecrease =
-        (row.getValue('CurrentPrice') as number) -
-        (row.getValue('BasePrice') as number) *
-          (row.getValue('Stock') as number);
-      if (!priceDecrease)
+      const currentPrice = BigInt(
+        Math.floor(row.getValue('CurrentPrice') as number),
+      );
+      const basePrice = BigInt(Math.floor(row.getValue('BasePrice') as number));
+      const stock = BigInt(row.getValue('Stock') as number);
+
+      const totalPriceChange = (currentPrice - basePrice) * stock;
+
+      const isPriceIncreasing = totalPriceChange > BigInt(0);
+      const isZero = totalPriceChange === BigInt(0);
+
+      if (isZero)
         return (
-          <span className="flex justify-end items-center text-sm">{0}</span>
+          <span className="flex justify-end items-center text-sm pr-5">0</span>
         );
       return (
         <span
@@ -167,7 +162,7 @@ export const FAVORITE_COLUMN = [
               : 'text-blue-600 dark:text-blue-400',
           )}
         >
-          {priceDecrease.toFixed(0)}
+          {totalPriceChange.toLocaleString()}
         </span>
       );
     },
